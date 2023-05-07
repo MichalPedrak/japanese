@@ -1,14 +1,24 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import '../css/app.css';
-import Layout from "@/Components/Layout.vue";
+import Layout from "@/Components/Layouts/Layout.vue";
+import NoAuthLayout from '@/Components/Layouts/NoAuthLayout.vue';
 
 createInertiaApp({
     resolve: name => {
         const pages = import.meta.glob('./Pages/**/*.vue', {eager: true})
 
+        console.log(pages)
 
-        Object.keys(pages).forEach(key => pages[key].default.layout = Layout)
+        Object.keys(pages).forEach(function(key){
+
+            if(pages[key].default.name === "LoginView.vue"){
+                pages[key].default.layout = NoAuthLayout
+            } else {
+                pages[key].default.layout = Layout
+
+            }
+        })
 
         return pages[`./Pages/${name}.vue`]
     },

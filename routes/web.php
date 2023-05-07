@@ -17,6 +17,7 @@ Route::get('/', function () {
     return Inertia('HomeView');
 });
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'create']);
 
 
 //Route::middleware('auth:sanctum')->group(function (){

@@ -22,6 +22,10 @@ class AuthController extends Controller
 
     }
 
+    public function create(Request $request){
+        return Inertia::render('LoginView');
+    }
+
     public function login(Request $request){
         if(!Auth::attempt($request->only('email', 'password'))){
             return response([

@@ -1,6 +1,6 @@
 <template>
-        <Nav></Nav>
-        <Aside></Aside>
+    <Nav></Nav>
+    <Aside></Aside>
       <div class="p-4 sm:ml-64 dark:bg-gray-900">
         <div class="p-4 border-1 border-gray-200  rounded-lg dark:border-gray-700 mt-20">
           <slot />
