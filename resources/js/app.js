@@ -12,6 +12,8 @@ createInertiaApp({
 
         Object.keys(pages).forEach(function(key){
 
+            // todo change layout to default, and if set layout = null on component, overwrite layout
+
             if(pages[key].default.name === "LoginView.vue"){
                 pages[key].default.layout = NoAuthLayout
             } else {

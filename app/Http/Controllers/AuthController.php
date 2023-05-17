@@ -12,13 +12,35 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function store(Request $request){
 
-        return User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+
+        // todo Validation, correct email, and password validation more than 6 charts and 1 number and special sign
+
+        $user = User::where('email', '=', $request->input('email'))->first();
+        if ($user === null) {
+            User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+
+        } else {
+
+            return json_encode([
+                'status' => 'error',
+                'message' => 'User exist',
+            ]);
+
+
+
+        }
+
+
+
+
+
+
 
     }
 
@@ -35,7 +57,7 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        $token = $user->createToken('token')->plainTextToken;
+//        $token = $user->createToken('token')->plainTextToken;
 
         $cookie = cookie('jwt', $token, 60 * 24);
 

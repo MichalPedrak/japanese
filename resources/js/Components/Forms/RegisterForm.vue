@@ -1,9 +1,9 @@
 <template>
-    <form class="space-y-4 md:space-y-6" action="#">
-        <InputForm v-model="name" name="name" id="name" input="text" placeholder="Jan Kowalski">Imię i Nazwisko</InputForm>
-        <InputForm v-model="username" name="username" id="username" input="text" placeholder="Janek123">Nazwa użytkownika</InputForm>
-        <InputForm v-model="email" name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
-        <InputForm v-model="password" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
+    <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
+        <InputForm :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski">Imię i Nazwisko</InputForm>
+        <InputForm :modelValue="form.email" @update:modelValue="newValue => form.email = newValue"  name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
+
+        <InputForm  :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
         <FormButton>Zarejestruj się</FormButton>
         <ChangeForm @toggleForm="$emit('toggleForm', false)">
             <template #heading>
@@ -13,6 +13,7 @@
                 Zaloguj się!
             </template>
         </ChangeForm>
+        <div>{{ error }}</div>
     </form>
 </template>
 
@@ -20,21 +21,41 @@
 import FormButton from "@/Components/Forms/FormsElements/FormButton.vue";
 import ChangeForm from "@/Components/Forms/FormsElements/ChangeForm.vue";
 import InputForm from "@/Components/Forms/FormsElements/InputForm.vue";
-import {ref} from "vue";
+import {reactive, ref, watch} from "vue";
+import axios from 'axios';
+import {router} from "@inertiajs/vue3";
 
 export default {
     name: "RegisterForm",
     components: {InputForm, ChangeForm, FormButton},
+    // props: { errors: Object },
     setup(){
-        let email = ref('');
-        let name = ref('');
-        let username = ref('');
-        let password = ref('');
+        let error = ref("");
+
+        let form = reactive({
+            name: "",
+            email: "",
+            password: "",
+        })
+
+
+
+        let submit = () => {
+
+            axios.post('/register', form)
+                .then(function (response) {
+
+                    console.log(response.data.message)
+                    error.value = response.data.message
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
         return {
-            name,
-            username,
-            email,
-            password,
+            error,
+            form,
+            submit,
         }
     }
 }
