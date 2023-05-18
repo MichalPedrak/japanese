@@ -14,6 +14,14 @@ class AuthController extends Controller
 {
     public function store(Request $request){
 
+        $messages = [
+            'name.required' => 'Imię i nazwisko jest wymagane',
+            'email.email' => 'Wprowadź prawidłowy adres email',
+            'email.unique' => 'Podany adres email jest już zajęty',
+            'password.regex' => 'Hasło musi zawierać jedną dużą literę, liczbę oraz znak specialny',
+            'password.min' => 'Hasło musi mieć conajmniej 6 znaków'
+        ];
+
         $validated = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|unique:users,email|email',
@@ -23,7 +31,7 @@ class AuthController extends Controller
                 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
 //                'confirmed'
             ]
-        ]);
+        ], $messages);
 
         $validated['password'] = Hash::make($validated['password']);
 

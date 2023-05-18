@@ -1,8 +1,8 @@
 <template>
     <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
-        <InputForm :error="error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski">Imię i Nazwisko</InputForm>
+        <InputForm v-bind:error="error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski">Imię i Nazwisko</InputForm>
         <InputForm :error="error.email" :modelValue="form.email" @update:modelValue="newValue => form.email = newValue"  name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
-        <InputForm  :error="error.password" :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
+        <InputForm  v-bind:error="error.password" :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
 
         <FormButton>Zarejestruj się</FormButton>
         <ChangeForm @toggleForm="$emit('toggleForm', false)">
@@ -29,6 +29,8 @@ export default {
     components: {InputForm, ChangeForm, FormButton},
     // props: { errors: Object },
     setup(){
+
+        let emailError = ref('')
         let error = reactive({
             name: "",
             email: "",
@@ -46,22 +48,17 @@ export default {
                     console.log(response)
                 })
                 .catch(function (errorResponse) {
-                    error = errorResponse.response.data.errors
-                    console.log(error)
+
+                    // todo How improve displaying errors?
+
+                    error.email = errorResponse.response.data.errors.email
+                    error.name = errorResponse.response.data.errors.name
+                    error.password = errorResponse.response.data.errors.password
+
                 });
         }
 
-        watch(error, async (newErrors, oldQuestion) => {
-            if (newQuestion.indexOf('?') > -1) {
-                answer.value = 'Thinking...'
-                try {
-                    const res = await fetch('https://yesno.wtf/api')
-                    answer.value = (await res.json()).answer
-                } catch (error) {
-                    answer.value = 'Error! Could not reach the API. ' + error
-                }
-            }
-        })
+
 
         return {
             error,
