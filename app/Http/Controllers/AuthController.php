@@ -14,33 +14,20 @@ class AuthController extends Controller
 {
     public function store(Request $request){
 
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users,email|email',
+            'password' => [
+                'required',
+                'min:6',
+                'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+//                'confirmed'
+            ]
+        ]);
 
-        // todo Validation, correct email, and password validation more than 6 charts and 1 number and special sign
+        $validated['password'] = Hash::make($validated['password']);
 
-        $user = User::where('email', '=', $request->input('email'))->first();
-        if ($user === null) {
-            User::create([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-            ]);
-
-        } else {
-
-            return json_encode([
-                'status' => 'error',
-                'message' => 'User exist',
-            ]);
-
-
-
-        }
-
-
-
-
-
-
+        User::create($validated);
 
     }
 
