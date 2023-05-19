@@ -1,8 +1,8 @@
 <template>
     <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
-        <InputForm v-bind:error="error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski">Imię i Nazwisko</InputForm>
-        <InputForm :error="error.email" :modelValue="form.email" @update:modelValue="newValue => form.email = newValue"  name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
-        <InputForm  v-bind:error="error.password" :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
+        <InputForm :error="store.error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski"></InputForm>
+        <InputForm :error="store.error.email" :modelValue="form.email" @update:modelValue="newValue => form.email = newValue"  name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
+        <InputForm :error="store.error.password" :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
 
         <FormButton>Zarejestruj się</FormButton>
         <ChangeForm @toggleForm="$emit('toggleForm', false)">
@@ -20,48 +20,32 @@
 import FormButton from "@/Components/Forms/FormsElements/FormButton.vue";
 import ChangeForm from "@/Components/Forms/FormsElements/ChangeForm.vue";
 import InputForm from "@/Components/Forms/FormsElements/InputForm.vue";
-import {reactive, ref, watch} from "vue";
-import axios from 'axios';
-import {router} from "@inertiajs/vue3";
+import {reactive} from "vue";
+
+import {useAuthStore} from "@/store";
+
 
 export default {
     name: "RegisterForm",
     components: {InputForm, ChangeForm, FormButton},
-    // props: { errors: Object },
-    setup(){
 
-        let emailError = ref('')
-        let error = reactive({
-            name: "",
-            email: "",
-            password: "",
-        })
+    setup(){
+        const store = useAuthStore();
+
         let form = reactive({
             name: "",
             email: "",
             password: "",
         })
 
-        let submit = () => {
-            axios.post('/register', form)
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (errorResponse) {
 
-                    // todo How improve displaying errors?
-
-                    error.email = errorResponse.response.data.errors.email
-                    error.name = errorResponse.response.data.errors.name
-                    error.password = errorResponse.response.data.errors.password
-
-                });
+        let submit = async () => {
+            await store.register(form);
         }
 
 
-
         return {
-            error,
+            store,
             form,
             submit,
         }

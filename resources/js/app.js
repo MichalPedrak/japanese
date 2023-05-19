@@ -1,8 +1,13 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import { createPinia} from 'pinia'
 import '../css/app.css';
 import Layout from "@/Components/Layouts/Layout.vue";
 import NoAuthLayout from '@/Components/Layouts/NoAuthLayout.vue';
+
+
+const piniaApp = createPinia()
+
 
 createInertiaApp({
     resolve: name => {
@@ -27,6 +32,7 @@ createInertiaApp({
     setup({el, App, props, plugin}) {
         createApp({render: () => h(App, props)})
             .use(plugin)
+            .use(piniaApp)
             .mount(el)
     },
     progress: {
