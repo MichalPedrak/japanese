@@ -29,7 +29,7 @@ class AuthController extends Controller
                 'required',
                 'min:6',
                 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-//                'confirmed'
+
             ]
         ], $messages);
 
@@ -44,30 +44,37 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+
         if(!Auth::attempt($request->only('email', 'password'))){
             return response([
-                'message' => 'Invalid credentials',
+                'message' => 'Nieprawidłowe dane',
             ], Response::HTTP_UNAUTHORIZED);
         };
 
-        $user = Auth::user();
-
-//        $token = $user->createToken('token')->plainTextToken;
-
-        $cookie = cookie('jwt', $token, 60 * 24);
 
         return \response([
+            'status' => 'ok',
             'message' => 'Success',
-            'user' => Auth::user()
-        ])->withCookie($cookie);
+            'user' => [
+                'id' => Auth::user()->id,
+                'email' => Auth::user()->email,
+                'name' => Auth::user()->name,
+            ]
+        ]);
     }
 
     public function logout(){
-        $cookie = Cookie::forget('jwt');
+        auth()->logout();
 
-        return \response([
-            'message' => 'sucess',
-        ])->withCookie($cookie);
+        return [
+            "status" => 'ok',
+            'message' => 'Zostałeś wylogowany',
+        ];
+//
+//        Inertia::render('/login', [
+//            "status" => 'ok',
+//            'message' => 'Zostałeś wylogowany',
+//        ]);
     }
 
     public function user(){

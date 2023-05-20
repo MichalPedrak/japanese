@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +14,13 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia('HomeView');
-});
+
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'create']);
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'create'])->name('login');
+
+
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'store']);
 
 
@@ -41,3 +44,8 @@ Route::get('/cards/{id?}', [\App\Http\Controllers\CardsController::class, 'index
 //Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 //Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
+Route::middleware([Authenticate::class])->group(function () {
+    Route::get('/', function () {
+        return Inertia('HomeView');
+    });
+});

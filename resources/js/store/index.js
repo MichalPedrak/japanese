@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from "axios";
-import {reactive} from "vue";
+import { router } from '@inertiajs/vue3'
 
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
@@ -8,7 +8,9 @@ export const useAuthStore = defineStore('authStore', {
             name: "",
             email: "",
             password: "",
-        }
+        },
+
+        user: JSON.parse(localStorage.getItem("user"))
     }),
 
     setters: {
@@ -18,6 +20,10 @@ export const useAuthStore = defineStore('authStore', {
     actions: {
         setError(error) {
             this.error = error
+        },
+
+        setUser(user) {
+            this.user = user
         },
 
         async register(form){
@@ -31,6 +37,46 @@ export const useAuthStore = defineStore('authStore', {
                     updateError(errorResponse.response.data.errors);
 
                 });
+        },
+
+        async login(form){
+            let updateUser =  this.setUser
+            let updateError =  this.setError
+            axios.post('/login', form, {
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(function (response) {
+
+                    updateUser(response.data.user);
+
+                    localStorage.setItem("user", JSON.stringify(response.data.user));
+
+
+                    router.visit('/')
+                })
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    updateError(errorResponse.response.data.error);
+                });
+        },
+
+        async logout(){
+            let updateUser =  this.setUser
+
+            axios.post('/logout',[], {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+                .then(function (response) {
+                    localStorage.removeItem("user");
+                    updateUser({})
+
+                    router.visit('/login')
+                })
+
         },
 
     }

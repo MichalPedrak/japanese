@@ -1,8 +1,7 @@
 <template>
-    <form class="space-y-4 md:space-y-6" action="#">
-
-        <InputForm v-model="email" name="email" id="email" input="email" placeholder="kowalski@email.com">Email</InputForm>
-        <InputForm v-model="password" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
+    <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
+        <InputForm v-model="form.email" name="email" id="email" input="email" placeholder="kowalski@email.com">Email</InputForm>
+        <InputForm v-model="form.password" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
 
 
         <div class="flex items-center justify-between">
@@ -33,17 +32,31 @@
 import FormButton from "@/Components/Forms/FormsElements/FormButton.vue";
 import ChangeForm from "@/Components/Forms/FormsElements/ChangeForm.vue";
 import InputForm from "@/Components/Forms/FormsElements/InputForm.vue";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
+import {useAuthStore} from "@/store";
 
 export default {
     name: "LoginForm",
     components: {InputForm, ChangeForm, FormButton},
     setup(){
-        let email = ref('');
-        let password = ref('');
+        const store = useAuthStore();
+
+        let form = reactive({
+            name: "",
+            email: "",
+            password: "",
+        })
+
+
+        let submit = async () => {
+            await store.login(form);
+        }
+
+
         return {
-            email,
-            password,
+            submit,
+            form,
+
         }
     }
 }
