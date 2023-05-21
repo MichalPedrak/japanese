@@ -40,8 +40,8 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
 
 
-    Route::post('/admin/group/store', [\App\Http\Controllers\GroupsController::class, 'store']);
-    Route::get('/admin/group', [\App\Http\Controllers\GroupsController::class, 'index']);
+    Route::post('/admin/groups/store', [\App\Http\Controllers\GroupsController::class, 'store']);
+    Route::get('/admin/groups', [\App\Http\Controllers\GroupsController::class, 'index']);
 
 
     Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index']);

@@ -20,7 +20,7 @@ let groupData = useForm({
 
 const addGroup = async () => {
 
-    groupData.post('/groups/store')
+    groupData.post('/admin/groups/store')
     groupData.title = '';
 };
 

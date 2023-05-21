@@ -1,8 +1,8 @@
 <template>
 
-    <div class="mt-5 content w-75 text-center" style="background: lightblue; height: 250px; border-radius: 8px;">
+    <div class=" mt-5 content w-75 text-center" style="background: lightblue; height: 250px; border-radius: 8px;">
 
-        <section class="bg-white dark:bg-gray-900">
+        <section class="border-gray-200 border relative bg-white dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-4xl lg:py-16">
 
             <h2>Fiszkii</h2>
@@ -25,6 +25,8 @@
 
     </div>
         </section>
+
+
     </div>
 
 </template>
@@ -67,50 +69,52 @@ export default {
     let editedCardId = ref(null)
 
 
+      const getCards = async (id) => {
+
+          const response = await fetch('/admin/cards/' + id, {
+              headers: {'Content-Type': 'application/json'},
+              credentials: 'include',
+          })
 
 
-     // const getCards = async (id) => {
+          console.log(response)
+
+          // let group = groups.value.find(item => item.id === id)
+          // group.cards = await response.json();
+
+      };
+
+
+      // const getGroups = async () => {
+         //
+         //   const response = await fetch('http://localhost:8000/api/groups', {
+         //     headers: {'Content-Type': 'application/json'},
+         //     credentials: 'include',
+         //   })
+         //
+         //   groups.value = await response.json();
+         //
+         //
+         // };
+
+
+
+     // const addGroup = async () => {
      //
-     //
-     //   const response = await fetch('http://localhost:8000/api/cards/' + id, {
+     //   await fetch('/admin/groups/store', {
+     //     method: 'POST',
      //     headers: {'Content-Type': 'application/json'},
      //     credentials: 'include',
+     //     body: JSON.stringify(groupData)
      //   })
      //
-     //   let group = groups.value.find(item => item.id === id)
-     //   group.cards = await response.json();
+     //   groupData.title = '';
+     //
+     //
+     //
+     //   // getCards();
      //
      // };
-     // const getGroups = async () => {
-     //
-     //   const response = await fetch('http://localhost:8000/api/groups', {
-     //     headers: {'Content-Type': 'application/json'},
-     //     credentials: 'include',
-     //   })
-     //
-     //   groups.value = await response.json();
-     //
-     //
-     // };
-
-
-
-     const addGroup = async () => {
-
-       await fetch('http://localhost:8000/api/groups/store', {
-         method: 'POST',
-         headers: {'Content-Type': 'application/json'},
-         credentials: 'include',
-         body: JSON.stringify(groupData)
-       })
-
-       groupData.title = '';
-
-
-
-       // getCards();
-
-     };
 
      const addCard = async () => {
 
@@ -177,7 +181,6 @@ export default {
 
 
     return {
-      addGroup,
 
       deleteCard,
       clickEdit,

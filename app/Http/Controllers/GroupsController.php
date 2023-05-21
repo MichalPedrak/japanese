@@ -25,15 +25,6 @@ class GroupsController extends Controller
             'level' => 'begginer',
         ]);
 
-//        $attributes = Request::validate([
-//            'title' => 'required',
-//        ]);
-//
-//        Groups::create($attributes);
-//
-        return redirect('/fiszki');
-
-
     }
 
 
