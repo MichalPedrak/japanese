@@ -34,6 +34,7 @@ import ChangeForm from "@/Components/Forms/FormsElements/ChangeForm.vue";
 import InputForm from "@/Components/Forms/FormsElements/InputForm.vue";
 import {reactive, ref} from "vue";
 import {useAuthStore} from "@/store";
+import {router} from "@inertiajs/vue3";
 
 export default {
     name: "LoginForm",
@@ -50,6 +51,8 @@ export default {
 
         let submit = async () => {
             await store.login(form);
+
+
         }
 
 

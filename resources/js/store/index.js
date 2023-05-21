@@ -31,6 +31,7 @@ export const useAuthStore = defineStore('authStore', {
             axios.post('/register', form)
                 .then(function (response) {
                     console.log(response)
+                    router.visit('/login')
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?

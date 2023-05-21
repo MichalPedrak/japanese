@@ -41,6 +41,9 @@ export default {
 
         let submit = async () => {
             await store.register(form);
+
+
+
         }
 
 

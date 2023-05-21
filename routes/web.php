@@ -15,37 +15,36 @@ use App\Http\Middleware\Authenticate;
 */
 
 
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'create'])->name('login');
-
-
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'store']);
 
 
-//Route::middleware('auth:sanctum')->group(function (){
-//Route::get('/user', [\App\Http\Controllers\AuthController::class, 'user']);
-//Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
-
-Route::post('/cards/store/', [\App\Http\Controllers\CardsController::class, 'store']);
-Route::patch('/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
-Route::delete('/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
-//});
-
-Route::get('/fiszki', [\App\Http\Controllers\GroupsController::class, 'index']);
-Route::post('/groups/store', [\App\Http\Controllers\GroupsController::class, 'store']);
-
-
-Route::get('/cards/{id?}', [\App\Http\Controllers\CardsController::class, 'index']);
-
-
-//Route::get('/users', [\App\Http\Controllers\AuthController::class, 'users']);
-//Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
-//Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('/', function () {
         return Inertia('HomeView');
     });
+});
+
+Route::middleware('admin')->group(function () {
+
+    Route::get('/admin', function () {
+        return Inertia('AdminView');
+    });
+
+    Route::get('/admin/cards/{id?}', [\App\Http\Controllers\CardsController::class, 'index']);
+    Route::post('/admin/cards/store/', [\App\Http\Controllers\CardsController::class, 'store']);
+    Route::patch('/admin/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
+    Route::delete('/admin/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
+
+
+    Route::post('/admin/group/store', [\App\Http\Controllers\GroupsController::class, 'store']);
+    Route::get('/admin/group', [\App\Http\Controllers\GroupsController::class, 'index']);
+
+
+    Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index']);
+
+
 });
