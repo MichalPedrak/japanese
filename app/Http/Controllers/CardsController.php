@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cards;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 //use Illuminate\Support\Facades\DB;
 
 class CardsController extends Controller
@@ -19,6 +21,16 @@ class CardsController extends Controller
 
         return Cards::with('groups')->orderByDesc('id')->get();
 //        return DB::table('cards')->orderBy('id')->cursorPaginate(2);
+
+    }
+
+    public function single($id = null){
+
+
+
+
+//        return Cards::all()->where('id', '=', $id)->get();
+        return DB::table('cards')->where('id', '=', $id)->get();
 
     }
 

@@ -2,12 +2,11 @@ import { defineStore } from 'pinia'
 import axios from "axios";
 import { router } from '@inertiajs/vue3'
 
-export const useAuthStore = defineStore('authStore', {
+export const useCardStore = defineStore('cardStore', {
     state: () => ({
-        groups: {}, // get all groups
-        showCards: 1, // for what group show cards
+        showStep: 1, // for what group show cards
         cards: {}, // get all cards
-        getSingleCard: 1, // for what card get details
+        singleCard: {}, // for what card get details
     }),
 
     setters: {
@@ -15,6 +14,20 @@ export const useAuthStore = defineStore('authStore', {
     },
 
     actions: {
+
+        setCards(cards) {
+            this.cards = cards
+        },
+
+        setSingleCard(singleCard) {
+            this.singleCard = singleCard
+        },
+
+        changeStep(step) {
+            this.showStep = step
+        },
+
+
         setError(error) {
             this.error = error
         },
@@ -37,44 +50,50 @@ export const useAuthStore = defineStore('authStore', {
                 });
         },
 
-        async getCards(form){
-            let updateUser =  this.setUser
-            let updateError =  this.setError
-            axios.post('/login', form, {
+        async getCards(id){
+
+            let setCards =  this.setCards
+            let changeStep =  this.changeStep
+
+            axios.get('/admin/cards/' + id, {
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-type': 'application/json',
+
                 }
             })
                 .then(function (response) {
-
-                    updateUser(response.data.user);
-
-                    localStorage.setItem("user", JSON.stringify(response.data.user));
-
-
-                    router.visit('/')
+                  setCards(response.data)
+                  changeStep(2)
+                  console.log(response)
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.error);
+                  console.log(errorResponse)
                 });
         },
 
-        async getSingleCard(){
-            let updateUser =  this.setUser
+        async getSingleCard(id){
 
-            axios.post('/logout',[], {
+            let setSingleCard =  this.setSingleCard
+            let changeStep =  this.changeStep
+
+            axios.get('/admin/cards/single/' + id, {
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-type': 'application/json',
+
                 }
             })
                 .then(function (response) {
-                    localStorage.removeItem("user");
-                    updateUser({})
-
-                    router.visit('/login')
+                    setSingleCard(response.data)
+                    changeStep(3)
+                    console.log(response)
                 })
-
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    console.log(errorResponse)
+                });
         },
 
         async addGroup(form){

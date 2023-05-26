@@ -16,6 +16,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+
+
         if(auth()->user()->admin != '1') {
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }

@@ -35,6 +35,7 @@ Route::middleware('admin')->group(function () {
     });
 
     Route::get('/admin/cards/{id?}', [\App\Http\Controllers\CardsController::class, 'index']);
+    Route::get('/admin/cards/single/{id?}', [\App\Http\Controllers\CardsController::class, 'single']);
     Route::post('/admin/cards/store/', [\App\Http\Controllers\CardsController::class, 'store']);
     Route::patch('/admin/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
     Route::delete('/admin/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
