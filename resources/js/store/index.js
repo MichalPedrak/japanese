@@ -54,8 +54,7 @@ export const useAuthStore = defineStore('authStore', {
 
                     localStorage.setItem("user", JSON.stringify(response.data.user));
 
-
-                    router.visit('/')
+                    router.visit('/admin');
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
