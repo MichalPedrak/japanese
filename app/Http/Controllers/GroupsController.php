@@ -34,6 +34,9 @@ class GroupsController extends Controller
 
     }
 
+    public function destroy($id = null){
 
+        return Groups::destroy($id);
+    }
 
 }

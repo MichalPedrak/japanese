@@ -29,7 +29,12 @@ export const useCardStore = defineStore('cardStore', {
             this.singleCard = singleCard
         },
 
-        changeStep(step) {
+        changeStep(step, resetSingleCard = false) {
+
+            if(resetSingleCard){
+                this.singleCard = {};
+            }
+
             this.showStep = step
         },
 
@@ -190,6 +195,23 @@ export const useCardStore = defineStore('cardStore', {
                     console.log(card.id)
 
                     getCards(card.group_id)
+
+                })
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    console.log(errorResponse);
+
+                });
+        }, // single card and all cards
+
+        async deleteGroup(group){
+
+            let getGroups =  this.getGroups
+
+            axios.delete('/admin/groups/destroy/' + group.id, {})
+                .then(function (response) {
+
+                    getGroups()
 
                 })
                 .catch(function (errorResponse) {

@@ -47,6 +47,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::post('/admin/groups/store', [\App\Http\Controllers\GroupsController::class, 'store']);
         Route::get('/admin/groups', [\App\Http\Controllers\GroupsController::class, 'index']);
         Route::get('/admin/groups/show', [\App\Http\Controllers\GroupsController::class, 'getGroups']);
+        Route::delete('/admin/groups/destroy/{id}', [\App\Http\Controllers\GroupsController::class, 'destroy']);
 
 
         Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index']);
