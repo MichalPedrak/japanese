@@ -62,6 +62,8 @@ class CardsController extends Controller
     }
 
     public function destroy($id = null){
+
+
         return Cards::destroy($id);
     }
 }

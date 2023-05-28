@@ -4,6 +4,7 @@ import { router } from '@inertiajs/vue3'
 
 export const useCardStore = defineStore('cardStore', {
     state: () => ({
+        groups: {},
         showStep: 1, // for what group show cards
         cards: {}, // get all cards
         singleCard: {}, // for what card get details
@@ -17,6 +18,11 @@ export const useCardStore = defineStore('cardStore', {
 
         setCards(cards) {
             this.cards = cards
+        },
+
+
+        setGroups(groups) {
+            this.groups = groups
         },
 
         setSingleCard(singleCard) {
@@ -36,17 +42,41 @@ export const useCardStore = defineStore('cardStore', {
             this.user = user
         },
 
-        async getGroups(form){
-            let updateError =  this.setError
-            axios.post('/register', form)
+        // async getGroups(form){
+        //     let updateError =  this.setError
+        //     axios.post('/register', form)
+        //         .then(function (response) {
+        //             console.log(response)
+        //             router.visit('/login')
+        //         })
+        //         .catch(function (errorResponse) {
+        //             // todo How improve displaying errors?
+        //             updateError(errorResponse.response.data.errors);
+        //
+        //         });
+        // },
+
+        async getGroups(){
+
+            let setGroups =  this.setGroups
+            let changeStep =  this.changeStep
+
+            axios.get('/admin/groups/show', {
+                headers: {
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-type': 'application/json',
+
+                }
+            })
                 .then(function (response) {
+                    setGroups(response.data)
+                    // changeStep(1)
                     console.log(response)
-                    router.visit('/login')
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.errors);
-
+                    console.log(errorResponse)
                 });
         },
 
@@ -76,6 +106,7 @@ export const useCardStore = defineStore('cardStore', {
         async getSingleCard(id){
 
             let setSingleCard =  this.setSingleCard
+
             let changeStep =  this.changeStep
 
             axios.get('/admin/cards/single/' + id, {
@@ -97,29 +128,41 @@ export const useCardStore = defineStore('cardStore', {
         },
 
         async addGroup(form){
-            let updateError =  this.setError
-            axios.post('/register', form)
+
+            let changeStep =  this.changeStep
+            let getGroups =  this.getGroups
+
+            axios.post('/admin/groups/store', form)
                 .then(function (response) {
+
+                    getGroups()
+                    changeStep(1)
                     console.log(response)
-                    router.visit('/login')
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.errors);
+                   console.log(errorResponse)
 
                 });
         },
 
         async addCard(form){
-            let updateError =  this.setError
-            axios.post('/register', form)
+
+            let changeStep =  this.changeStep
+            let getCards =  this.getCards
+
+            axios.post('/admin/cards/store', form)
                 .then(function (response) {
+
+
+                    changeStep(2)
                     console.log(response)
-                    router.visit('/login')
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.errors);
+                    console.log(errorResponse)
 
                 });
         },
@@ -138,16 +181,20 @@ export const useCardStore = defineStore('cardStore', {
                 });
         },
 
-        async deleteCard(form){
-            let updateError =  this.setError
-            axios.post('/register', form)
+        async deleteCard(card){
+
+            let getCards =  this.getCards
+
+            axios.delete('/admin/cards/destroy/' + card.id, {})
                 .then(function (response) {
-                    console.log(response)
-                    router.visit('/login')
+                    console.log(card.id)
+
+                    getCards(card.group_id)
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.errors);
+                    console.log(errorResponse);
 
                 });
         }, // single card and all cards
