@@ -9,7 +9,12 @@
     <CardStep step="2" :store="store">
         <template #heading>Fiszki1</template>
         <template #subheading></template>
-        <cards class="py-3 sm:py-4 fadeIn" v-for="card in store.cards" :card="card" :key="card.id">{{ card.content }} - {{ card.definition}}</cards>
+
+
+
+
+
+<!--        <cards @dragstart="startDrag($event, card)" draggable="true" class="py-3 sm:py-4 fadeIn" v-for="card in store.cards" :card="card" :key="card.id">{{ card.content }} - {{ card.definition}}</cards>-->
     </CardStep>
 
     <CardStep step="3" :store="store" >
@@ -73,21 +78,45 @@ import Group from "@/Components/Group.vue";
 import CreateCard from "@/Pages/CreateCard.vue";
 import CreateGroup from "@/Components/CreateGroup.vue";
 
+
 export default {
   name: "CardsView.vue",
-  components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group},
+  components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, },
     // from interia render
+    data() {
+      return{
+          myArray: [
+              { name: "Angular", id:0 },
+              { name: "React", id:1},
+              { name: "Vue", id:2 },
+              { name: "HTML", id:3 },
+              { name: "CSS", id:4 },
+              { name: "Sass", id:5},
+          ],
+      }
 
+    },
 
   setup() {
       let store = useCardStore();
 
+
       onMounted(() => {
           store.getGroups();
+          cards = store.cards;
       })
 
 
 
+      let onEnd = (e) => {
+          console.log(e)
+
+          oldIndex.value = e.oldIndex;
+          newIndex.value = e.newIndex;
+      }
+
+      let oldIndex = ref('')
+      let newIndex = ref('')
     let cardData = reactive({
 
       title: '',
@@ -104,76 +133,14 @@ export default {
        title: '',
 
      })
-    let cards = ref(null)
+
+    let cards = reactive(store.cards)
+
+
 
     let editedCardId = ref(null)
 
-      //
-      // const getCards = async (id) => {
-      //
-      //     const response = await fetch('/admin/cards/' + id, {
-      //         headers: {'Content-Type': 'application/json'},
-      //         credentials: 'include',
-      //     })
-      //
-      //
-      //     console.log(response)
-      //
-      //     // let group = groups.value.find(item => item.id === id)
-      //     // group.cards = await response.json();
-      //
-      // };
-
-
-      // const getGroups = async () => {
-         //
-         //   const response = await fetch('http://localhost:8000/api/groups', {
-         //     headers: {'Content-Type': 'application/json'},
-         //     credentials: 'include',
-         //   })
-         //
-         //   groups.value = await response.json();
-         //
-         //
-         // };
-
-
-
-     // const addGroup = async () => {
-     //
-     //   await fetch('/admin/groups/store', {
-     //     method: 'POST',
-     //     headers: {'Content-Type': 'application/json'},
-     //     credentials: 'include',
-     //     body: JSON.stringify(groupData)
-     //   })
-     //
-     //   groupData.title = '';
-     //
-     //
-     //
-     //   // getCards();
-     //
-     // };
-
-     const addCard = async () => {
-
-      console.log(cardData)
-
-       await fetch('http://localhost:8000/api/cards/store', {
-         method: 'POST',
-         headers: {'Content-Type': 'application/json'},
-         credentials: 'include',
-         body: JSON.stringify(cardData)
-       })
-
-
-
-
-
-     };
-
-     const editCard = async (card) => {
+    const editCard = async (card) => {
        const cartId = card.id;
        await fetch('http://localhost:8000/api/cards/update/' + cartId, {
          method: 'PATCH',
@@ -187,55 +154,15 @@ export default {
        // getCards();
      };
 
-     const deleteCard = async (id) => {
-
-       await fetch('http://localhost:8000/api/cards/destroy/' + id, {
-         method: 'DELETE',
-         headers: {'Content-Type': 'application/json'},
-         credentials: 'include',
-
-       })
-
-
-     };
-
-
-    const toggleEdit =  (id) => {
-       if(id){
-         editedCardId.value = id;
-       } else {
-         editedCardId.value = null
-         // getCards();
-       }
-
-    };
-
-    const clickEdit = (id) => {
-      return
-     };
-
-
-
-
-
-
-
     return {
-        store,
-      deleteCard,
-      clickEdit,
+        onEnd,
+
+      store,
       editCard,
-      toggleEdit,
       groupData,
       editedCardId,
-      addCard,
       cardData,
-
       cards,
-
-
-
-
     }
   }
 }
