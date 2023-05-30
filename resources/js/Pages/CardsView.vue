@@ -1,4 +1,120 @@
+
+<script>
+
+import {onMounted, reactive, ref} from "vue";
+import {useCardStore} from "../store/CardsStore.js";
+import Cards from "@/Components/Cards.vue";
+import CreateButtons from "@/Components/CreateButtons.vue";
+import CardStep from "@/Pages/CardStep.vue";
+import Group from "@/Components/Group.vue";
+import CreateCard from "@/Pages/CreateCard.vue";
+import CreateGroup from "@/Components/CreateGroup.vue";
+import draggable from "vuedraggable";
+
+
+
+
+export default {
+    name: "CardsView.vue",
+    components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
+    // from interia render
+    data() {
+        return {
+
+            enabled: true,
+            list: [
+                { name: "John", id: 0 },
+                { name: "Joao", id: 1 },
+                { name: "Jean", id: 2 }
+            ],
+
+            dragging: false
+        };
+    },
+
+    setup() {
+
+        let store = useCardStore();
+
+
+        let list1 = ref([
+            { name: "John", id: 0 },
+            { name: "Joao", id: 1 },
+            { name: "Jean", id: 2 }
+        ])
+
+        list1 = ref(store.cards);
+
+
+        onMounted(() => {
+            store.getGroups();
+            cards = ref(store.cards);
+        })
+
+
+
+        let onEnd = (e) => {
+            console.log(e)
+
+            oldIndex.value = e.oldIndex;
+            newIndex.value = e.newIndex;
+        }
+
+        let oldIndex = ref('')
+        let newIndex = ref('')
+        let cardData = reactive({
+
+            title: '',
+            content: '',
+            group_id: '',
+            content_example: '',
+            definition: '',
+            definition_example: '',
+
+        })
+
+        let groupData = reactive({
+
+            title: '',
+
+        })
+
+        let cards = reactive(store.cards)
+
+
+
+        let editedCardId = ref(null)
+
+        const editCard = async (card) => {
+            const cartId = card.id;
+            await fetch('http://localhost:8000/api/cards/update/' + cartId, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify(card)
+            })
+
+            editedCardId.value = null;
+
+            // getCards();
+        };
+
+        return {
+            onEnd,
+            list1,
+            store,
+            editCard,
+            groupData,
+            editedCardId,
+            cardData,
+            cards,
+        }
+    }
+}
+</script>
+
 <template>
+
 
     <CardStep step="1" :store="store">
         <template #heading>Fiszki</template>
@@ -11,7 +127,20 @@
         <template #subheading></template>
 
 
-
+        <draggable
+            v-model="store.cards"
+            :disabled="!enabled"
+            item-key="name"
+            class="list-group"
+            ghost-class="ghost"
+            :move="checkMove"
+            @start="dragging = true"
+            @end="dragging = false"
+        >
+            <template #item="{ element }">
+               <cards :card="element" :key="element.id">{{ element.title }}</cards>
+            </template>
+        </draggable>
 
 
 <!--        <cards @dragstart="startDrag($event, card)" draggable="true" class="py-3 sm:py-4 fadeIn" v-for="card in store.cards" :card="card" :key="card.id">{{ card.content }} - {{ card.definition}}</cards>-->
@@ -67,104 +196,4 @@
 
 </template>
 
-<script>
-
-import {onMounted, reactive, ref} from "vue";
-import {useCardStore} from "../store/CardsStore.js";
-import Cards from "@/Components/Cards.vue";
-import CreateButtons from "@/Components/CreateButtons.vue";
-import CardStep from "@/Pages/CardStep.vue";
-import Group from "@/Components/Group.vue";
-import CreateCard from "@/Pages/CreateCard.vue";
-import CreateGroup from "@/Components/CreateGroup.vue";
-
-
-export default {
-  name: "CardsView.vue",
-  components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, },
-    // from interia render
-    data() {
-      return{
-          myArray: [
-              { name: "Angular", id:0 },
-              { name: "React", id:1},
-              { name: "Vue", id:2 },
-              { name: "HTML", id:3 },
-              { name: "CSS", id:4 },
-              { name: "Sass", id:5},
-          ],
-      }
-
-    },
-
-  setup() {
-      let store = useCardStore();
-
-
-      onMounted(() => {
-          store.getGroups();
-          cards = store.cards;
-      })
-
-
-
-      let onEnd = (e) => {
-          console.log(e)
-
-          oldIndex.value = e.oldIndex;
-          newIndex.value = e.newIndex;
-      }
-
-      let oldIndex = ref('')
-      let newIndex = ref('')
-    let cardData = reactive({
-
-      title: '',
-      content: '',
-      group_id: '',
-      content_example: '',
-      definition: '',
-      definition_example: '',
-
-    })
-
-     let groupData = reactive({
-
-       title: '',
-
-     })
-
-    let cards = reactive(store.cards)
-
-
-
-    let editedCardId = ref(null)
-
-    const editCard = async (card) => {
-       const cartId = card.id;
-       await fetch('http://localhost:8000/api/cards/update/' + cartId, {
-         method: 'PATCH',
-         headers: {'Content-Type': 'application/json'},
-         credentials: 'include',
-         body: JSON.stringify(card)
-       })
-
-       editedCardId.value = null;
-
-       // getCards();
-     };
-
-    return {
-        onEnd,
-
-      store,
-      editCard,
-      groupData,
-      editedCardId,
-      cardData,
-      cards,
-    }
-  }
-}
-</script>
 
