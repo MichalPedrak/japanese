@@ -130,6 +130,8 @@ export default {
 
             console.log(4, position)
 
+            store.cards[index].position = position;
+
             store.moveCard({
                 card_id: card.id,
                 position: position,

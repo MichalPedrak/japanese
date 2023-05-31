@@ -146,7 +146,9 @@ export const useCardStore = defineStore('cardStore', {
             })
                 .then(function (response) {
 
-                    // console.log(response)
+                    console.log(response)
+
+                    // store.cards[data.card_id].position = response.data.position;
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
