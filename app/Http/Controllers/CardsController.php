@@ -15,7 +15,7 @@ class CardsController extends Controller
 
         if(!empty($id)){
 
-            return Cards::with('groups')->orderByDesc('id')->where('group_id', '=', $id)->get();
+            return Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get();
 
         }
 
@@ -66,4 +66,26 @@ class CardsController extends Controller
 
         return Cards::destroy($id);
     }
+
+    public function move(Request $request, $id = null){
+
+        $request->validate([
+            'position' => ['required', 'numeric']
+        ]);
+
+        var_dump($request['position']);
+
+        $card = Cards::find($id);
+
+
+        $card->position = $request['position'];
+
+        $card->save();
+
+        return $card;
+
+
+    }
+
+
 }

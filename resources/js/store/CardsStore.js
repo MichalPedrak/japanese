@@ -133,6 +133,29 @@ export const useCardStore = defineStore('cardStore', {
                 });
         },
 
+        async moveCard(data){
+
+
+
+            axios.put('/admin/cards/single/move/' + data.card_id, data,{
+                headers: {
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-type': 'application/json',
+
+                }
+            })
+                .then(function (response) {
+
+                    // console.log(response)
+                })
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    console.log(errorResponse)
+                });
+
+
+        },
+
         async addGroup(form){
 
             let changeStep =  this.changeStep

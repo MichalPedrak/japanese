@@ -13,7 +13,6 @@ import draggable from "vuedraggable";
 
 
 
-
 export default {
     name: "CardsView.vue",
     components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
@@ -83,6 +82,63 @@ export default {
 
 
 
+        const onChange = (e) => {
+
+            console.log(e)
+
+            let item = e.moved;
+
+            if (!item) return;
+
+
+            let index = item.newIndex;
+            let prevCard = store.cards[index - 1];
+            let nextCard = store.cards[index + 1];
+            let card = store.cards[index];
+
+            console.log({ prevCard, nextCard})
+
+
+            let position = card.position;
+            // if (prevCard && nextCard) {
+            //     position = (prevCard.position + nextCard.position) / 2;
+            //     console.log(1, position)
+            // } else if (prevCard) {
+            //     position = prevCard.position + (prevCard.position / 2);
+            //     console.log(2, position)
+            // } else if (nextCard) {
+            //     position = nextCard.position / 2;
+            //     console.log(3, position)
+            // }
+            //
+
+
+            if (prevCard && nextCard) { // ok
+                console.log(nextCard.position, prevCard.position);
+                position = (prevCard.position + nextCard.position) / 2;
+                console.log(1, position)
+            } else if (prevCard) {
+                console.log(prevCard.position);
+                position = prevCard.position - (prevCard.position / 2);
+                console.log(2, position)
+            } else if (nextCard) {
+                console.log(nextCard.position);
+                position = nextCard.position + (nextCard.position / 2);
+                console.log(3, position)
+            }
+
+
+            console.log(4, position)
+
+            store.moveCard({
+                card_id: card.id,
+                position: position,
+            });
+
+        }
+
+
+
         let editedCardId = ref(null)
 
         const editCard = async (card) => {
@@ -100,6 +156,7 @@ export default {
         };
 
         return {
+            onChange,
             onEnd,
             list1,
             store,
@@ -133,13 +190,16 @@ export default {
             item-key="name"
             class="list-group"
             ghost-class="ghost"
-            :move="checkMove"
+            drag-class="drag1"
             @start="dragging = true"
             @end="dragging = false"
+            @change="onChange"
         >
-            <template #item="{ element }">
-               <cards :card="element" :key="element.id">{{ element.title }}</cards>
-            </template>
+
+                <template #item="{ element }">
+                        <cards :card="element" :key="element.id">{{ element.title }}</cards>
+                </template>
+
         </draggable>
 
 
@@ -196,4 +256,17 @@ export default {
 
 </template>
 
+<style>
+.sortable-chosen .drag-item {
+    /*transform: rotate(5deg);*/
+    /*transformX: 10px;*/
 
+}
+.ghost {
+    background: lightgray;
+    border-radius: 6px;
+}
+.ghost > div {
+    visibility: hidden;
+}
+</style>
