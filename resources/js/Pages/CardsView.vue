@@ -10,12 +10,13 @@ import Group from "@/Components/Group.vue";
 import CreateCard from "@/Pages/CreateCard.vue";
 import CreateGroup from "@/Components/CreateGroup.vue";
 import draggable from "vuedraggable";
+import Modal from "@/Components/Modal.vue";
 
 
 
 export default {
     name: "CardsView.vue",
-    components: {CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
+    components: {Modal, CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
     // from interia render
     data() {
         return {
@@ -211,7 +212,13 @@ export default {
     <CardStep step="3" :store="store" >
         <template #heading>Fiszki2</template>
         <template #subheading></template>
+
+        <Modal>
+test
+        </Modal>
+
         <CreateCard :store="store" :card="store.singleCard[0]" />
+
     </CardStep>
 
     <CardStep step="4" :store="store">
