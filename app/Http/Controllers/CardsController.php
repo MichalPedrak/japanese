@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class CardsController extends Controller
 {
-    public function index($id = null){
+    public function index($id = null)
+    {
 
 
-        if(!empty($id)){
+        if (!empty($id)) {
 
             return Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get();
 
@@ -24,9 +25,8 @@ class CardsController extends Controller
 
     }
 
-    public function single($id = null){
-
-
+    public function single($id = null)
+    {
 
 
 //        return Cards::all()->where('id', '=', $id)->get();
@@ -34,7 +34,8 @@ class CardsController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
 
         return Cards::create([
@@ -47,7 +48,8 @@ class CardsController extends Controller
 
     }
 
-    public function update(Request $request, $id = null){
+    public function update(Request $request, $id = null)
+    {
         $card = Cards::find($id);
 
 
@@ -61,19 +63,20 @@ class CardsController extends Controller
 
     }
 
-    public function destroy($id = null){
+    public function destroy($id = null)
+    {
 
 
         return Cards::destroy($id);
     }
 
-    public function move(Request $request, $id = null){
+    public function move(Request $request, $id = null)
+    {
 
         $request->validate([
             'position' => ['required', 'numeric']
         ]);
 
-        var_dump($request['position']);
 
         $card = Cards::find($id);
 
@@ -82,10 +85,22 @@ class CardsController extends Controller
 
         $card->save();
 
-        return $card;
+        if ($card->position < 100 or $card->position > 100000000) {
+        DB::statement("SET @previousPosition := 0");
+            DB::table('cards')
+                ->where('group_id', $card->group_id)
+                ->orderBy('position')
+                ->update([
+                    'position' => DB::raw('@previousPosition := @previousPosition + 60000')
+                ]);
+
+
+            return $card;
+
+
+        }
 
 
     }
-
-
 }
+
