@@ -6,6 +6,29 @@
 
 h1,h2,h3,h4,h5,h6, p, a, span, div{
     font-family: 'Montserrat', sans-serif;
+    /*color: #ee3c20*/
+
+}
+*{
+    color: #36332c;
+}
+.bg-red-main, .route-active{
+    background: #ee3c20 !important;
+}
+.route-active{
+    color: white !important;
+
+}
+
+.route-active svg{
+    color: white !important;
+    fill: white;
+}
+
+
+
+.bg-red-main-hover{
+    background: #c2331c !important;
 }
 
 .fadeIn{

@@ -62,8 +62,8 @@ import DataTablesCore from 'datatables.net';
 
 let id = 1;
 export default {
-    name: "simple",
-    display: "Simple",
+    name: "AdminView",
+    display: "Admin",
     order: 0,
     components: {
         draggable
