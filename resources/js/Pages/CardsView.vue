@@ -209,23 +209,24 @@ export default {
 <!--        <cards @dragstart="startDrag($event, card)" draggable="true" class="py-3 sm:py-4 fadeIn" v-for="card in store.cards" :card="card" :key="card.id">{{ card.content }} - {{ card.definition}}</cards>-->
     </CardStep>
 
-    <CardStep step="3" :store="store" >
-        <template #heading>Fiszki2</template>
-        <template #subheading></template>
+<!--    <CardStep step="3" :store="store" >-->
+<!--        <template #heading>Fiszki2</template>-->
+<!--        <template #subheading></template>-->
 
-        <Modal>
-test
-        </Modal>
+<!--     -->
+
+
+<!--    </CardStep>-->
+
+    <Modal v-if="store.showModal == 'card'" :store="store">
 
         <CreateCard :store="store" :card="store.singleCard[0]" />
+    </Modal>
 
-    </CardStep>
-
-    <CardStep step="4" :store="store">
-        <template #heading>Fiszki2</template>
-        <template #subheading></template>
+    <Modal v-if="store.showModal == 'group'" :store="store">
         <CreateGroup :store="store"></CreateGroup>
-    </CardStep>
+    </Modal>
+
 
 
 <!--    <div v-if="store.showStep == 5" class="relative mt-5 content w-75 text-center" style="background: lightblue; height: 250px; border-radius: 8px;">-->

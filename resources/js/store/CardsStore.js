@@ -8,6 +8,8 @@ export const useCardStore = defineStore('cardStore', {
         showStep: 1, // for what group show cards
         cards: {}, // get all cards
         singleCard: {}, // for what card get details
+        singleGroup: {}, // for what card get details
+        showModal: false,
     }),
 
     setters: {
@@ -20,6 +22,10 @@ export const useCardStore = defineStore('cardStore', {
             this.cards = cards
         },
 
+        getShowModal(){
+            return this.showModal;
+        },
+
 
         setGroups(groups) {
             this.groups = groups
@@ -27,6 +33,10 @@ export const useCardStore = defineStore('cardStore', {
 
         setSingleCard(singleCard) {
             this.singleCard = singleCard
+        },
+
+        setSingleGroup(singleGroup) {
+            this.singleGroup = singleGroup
         },
 
         changeStep(step, resetSingleCard = false) {
@@ -45,6 +55,21 @@ export const useCardStore = defineStore('cardStore', {
 
         setUser(user) {
             this.user = user
+        },
+
+        setShowModal(showModal, clear = false) {
+            let setSingleCard = this.setSingleCard
+            let setSingleGroup = this.setSingleGroup
+
+            if(clear == true){
+                setSingleCard({});
+                setSingleGroup({});
+                // this.setSingleCard({});
+                // this.singleGroup = {};
+
+            }
+
+            this.showModal = showModal
         },
 
         // async getGroups(form){
@@ -114,6 +139,7 @@ export const useCardStore = defineStore('cardStore', {
             let setSingleCard =  this.setSingleCard
 
             let changeStep =  this.changeStep
+            let setShowModal =  this.setShowModal
 
             axios.get('/admin/cards/single/' + id, {
                 headers: {
@@ -124,7 +150,7 @@ export const useCardStore = defineStore('cardStore', {
             })
                 .then(function (response) {
                     setSingleCard(response.data)
-                    changeStep(3)
+                    setShowModal('card')
                     console.log(response)
                 })
                 .catch(function (errorResponse) {
