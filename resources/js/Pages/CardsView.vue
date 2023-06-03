@@ -11,12 +11,16 @@ import CreateCard from "@/Pages/CreateCard.vue";
 import CreateGroup from "@/Components/CreateGroup.vue";
 import draggable from "vuedraggable";
 import Modal from "@/Components/Modal.vue";
+import GroupHeading from "@/Components/GroupHeading.vue";
+import CardHeading from "@/Components/CardHeading.vue";
 
 
 
 export default {
     name: "CardsView.vue",
-    components: {Modal, CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
+    components: {
+        CardHeading,
+        GroupHeading, Modal, CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
     // from interia render
     data() {
         return {
@@ -179,14 +183,17 @@ export default {
     <CardStep step="1" :store="store">
         <template #heading>Fiszki</template>
         <template #subheading></template>
+        <GroupHeading></GroupHeading>
         <Group class="py-3 sm:py-4 fadeIn" v-for="group in store.groups" :group="group" :key="group.id"></Group>
+
+
     </CardStep>
 
-    <CardStep step="2" :store="store">
+    <CardStep step="2" :store="store" class="cards">
         <template #heading>Fiszki1</template>
         <template #subheading></template>
 
-
+        <CardHeading></CardHeading>
         <draggable
             v-model="store.cards"
             :disabled="!enabled"
@@ -199,7 +206,7 @@ export default {
             @change="onChange"
         >
 
-                <template #item="{ element }">
+                <template #item="{ element }" >
                         <cards :card="element" :key="element.id">{{ element.title }}</cards>
                 </template>
 
@@ -278,5 +285,9 @@ export default {
 }
 .ghost > div {
     visibility: hidden;
+}
+
+.cards .list-group{
+    border: none;
 }
 </style>

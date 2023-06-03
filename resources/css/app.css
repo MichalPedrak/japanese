@@ -4,6 +4,10 @@
 @tailwind color;
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');*/
 
+:root{
+    --primary-color: #ee3c20;
+}
+
 h1,h2,h3,h4,h5,h6, p, a, span, div{
     font-family: 'Montserrat', sans-serif;
     /*color: #ee3c20*/
@@ -12,12 +16,13 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
 *{
     color: #36332c;
 }
-.bg-red-main, .route-active{
-    background: #ee3c20 !important;
+.bg-primary{
+    background: var(--primary-color) !important;
 }
 .route-active{
+    transition: background 0.5s ease-in;
     color: white !important;
-
+    background: #ee3c20 !important;
 }
 
 .route-active svg{
@@ -32,10 +37,12 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
 }
 
 .fadeIn{
-  animation: fadeIn 1s;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translate3d(0,-5%,0);}
-  100% { opacity: 1; transform: translate3d(0,0%,0);}
+  0% { opacity: 0;}
+  /*0% { opacity: 0; transform: translate3d(0,-5%,0);}*/
+  100% { opacity: 1; }
+  /*100% { opacity: 1; transform: translate3d(0,0%,0);}*/
 }
