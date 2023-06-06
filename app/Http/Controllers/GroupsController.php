@@ -34,6 +34,21 @@ class GroupsController extends Controller
 
     }
 
+
+    public function update(Request $request, $id = null)
+    {
+        $group = Groups::find($id);
+
+
+        $group->title = $request['title'];
+        $group->level = 'begg';
+
+        $group->save();
+
+        return $group;
+
+    }
+
     public function destroy($id = null){
 
         return Groups::destroy($id);

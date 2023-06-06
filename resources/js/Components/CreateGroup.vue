@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="store.addGroup(form)" class="max-w-2xl mx-auto">
+    <form @submit.prevent class="max-w-2xl mx-auto">
 
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-6 group">
@@ -19,36 +19,42 @@
 
         <div class="grid md:grid-cols-2 md:gap-6">
             <div></div>
-            <button  type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dodaj</button>
+
+            <button @click="store.addGroup(form)" v-if="store.showModal == 'create-group'" type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dodaj</button>
+            <button @click="store.editGroup(form)" v-else type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Zaaktualizuj</button>
 
         </div>
+
 
     </form>
 
 </template>
 
 <script>
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
+import {useCardStore} from "../store/CardsStore.js";
+
 
 export default {
     name: "CreateGroup",
-    props: {
-        store: {},
-        group: {
-            default: {
-                title: '',
-                level: '',
-            }
-        },
-    },
+    // props: {
+    //     store: {},
+    //     group: {
+    //         default: {
+    //             title: '',
+    //             level: '',
+    //         }
+    //     },
+    // },
     setup(){
-        let form = reactive({
-            title: '',
-            level: '',
-        })
+        let store = useCardStore();
+
+
+        let form = JSON.parse(JSON.stringify(store.singleGroup));
 
         return{
             form,
+            store,
         }
     }
 

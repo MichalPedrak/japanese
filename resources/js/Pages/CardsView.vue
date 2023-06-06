@@ -225,13 +225,12 @@ export default {
 
 <!--    </CardStep>-->
 
-    <Modal v-if="store.showModal == 'card'" :store="store">
-
-        <CreateCard :store="store" :card="store.singleCard[0]" />
+    <Modal v-if="store.showModal == 'create-card' || store.showModal == 'edit-card'">
+        <CreateCard :card="store.singleCard[0]" />
     </Modal>
 
-    <Modal v-if="store.showModal == 'group'" :store="store">
-        <CreateGroup :store="store"></CreateGroup>
+    <Modal v-if="store.showModal == 'create-group' || store.showModal == 'edit-group' " >
+        <CreateGroup></CreateGroup>
     </Modal>
 
 

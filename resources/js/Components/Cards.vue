@@ -13,7 +13,7 @@
 
 
         <div class="flex gap-16 edit-section">
-            <button class="w-25 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" @click.prevent="store.getSingleCard(card.id)"  @click="store.showModal = 'card'">Edytuj fiszkę</button>
+            <button class="w-25 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" @click.prevent="store.getSingleCard(card.id)"  >Edytuj fiszkę</button>
 
             <div class="cursor-pointer" @click="store.deleteCard(card)">
                 <svg fill="none" stroke="currentColor" height="24" width="24" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

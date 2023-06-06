@@ -41,11 +41,12 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::get('/admin/cards/single/{id?}', [\App\Http\Controllers\CardsController::class, 'single']);
         Route::put('/admin/cards/single/move/{id?}', [\App\Http\Controllers\CardsController::class, 'move']);
         Route::post('/admin/cards/store/', [\App\Http\Controllers\CardsController::class, 'store']);
-        Route::patch('/admin/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
+        Route::post('/admin/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
         Route::delete('/admin/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
 
 
         Route::post('/admin/groups/store', [\App\Http\Controllers\GroupsController::class, 'store']);
+        Route::post('/admin/groups/update/{id}', [\App\Http\Controllers\GroupsController::class, 'update']);
         Route::get('/admin/groups', [\App\Http\Controllers\GroupsController::class, 'index']);
         Route::get('/admin/groups/show', [\App\Http\Controllers\GroupsController::class, 'getGroups']);
         Route::delete('/admin/groups/destroy/{id}', [\App\Http\Controllers\GroupsController::class, 'destroy']);

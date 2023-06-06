@@ -57,16 +57,17 @@ export const useCardStore = defineStore('cardStore', {
             this.user = user
         },
 
-        setShowModal(showModal, clear = false) {
+        setShowModal(showModal, clear = false, data = []) {
             let setSingleCard = this.setSingleCard
             let setSingleGroup = this.setSingleGroup
 
             if(clear == true){
                 setSingleCard({});
                 setSingleGroup({});
-                // this.setSingleCard({});
-                // this.singleGroup = {};
+            }
 
+            if(showModal == 'edit-group'){
+                this.setSingleGroup(data);
             }
 
             this.showModal = showModal
@@ -150,7 +151,7 @@ export const useCardStore = defineStore('cardStore', {
             })
                 .then(function (response) {
                     setSingleCard(response.data)
-                    setShowModal('card')
+                    setShowModal('edit-card')
                     console.log(response)
                 })
                 .catch(function (errorResponse) {
@@ -186,14 +187,14 @@ export const useCardStore = defineStore('cardStore', {
 
         async addGroup(form){
 
-            let changeStep =  this.changeStep
+            let setShowModal =  this.setShowModal
             let getGroups =  this.getGroups
 
             axios.post('/admin/groups/store', form)
                 .then(function (response) {
 
                     getGroups()
-                    changeStep(1)
+                    setShowModal('')
                     console.log(response)
 
                 })
@@ -204,16 +205,36 @@ export const useCardStore = defineStore('cardStore', {
                 });
         },
 
+        async editGroup(form){
+
+            let setShowModal =  this.setShowModal
+            let getGroups =  this.getGroups
+
+            axios.post('/admin/groups/update/' + form.id, form)
+                .then(function (response) {
+
+                    getGroups()
+                    setShowModal('')
+                    console.log(response)
+
+                })
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    console.log(errorResponse)
+
+                });
+        },
+
         async addCard(form){
 
-            let changeStep =  this.changeStep
+            let setShowModal =  this.setShowModal
             let getCards =  this.getCards
 
             axios.post('/admin/cards/store', form)
                 .then(function (response) {
 
-
-                    changeStep(2)
+                    getCards(form.group_id)
+                    setShowModal('')
                     console.log(response)
 
                 })
@@ -225,15 +246,21 @@ export const useCardStore = defineStore('cardStore', {
         },
 
         async editCard(form){
-            let updateError =  this.setError
-            axios.post('/register', form)
+
+            let setShowModal =  this.setShowModal
+            let getCards =  this.getCards
+
+            axios.post('/admin/cards/update/' + form.id, form)
                 .then(function (response) {
+
+                    getCards(form.group_id)
+                    setShowModal('')
                     console.log(response)
-                    router.visit('/login')
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.errors);
+                    console.log(errorResponse)
 
                 });
         },

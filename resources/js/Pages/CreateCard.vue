@@ -1,7 +1,7 @@
 <template>
 
 
-    <form @submit.prevent="store.addCard(card)" class="max-w-2xl mx-auto" >
+    <form @submit.prevent class="max-w-2xl mx-auto" >
 
         <h2 class="text-xl mx-auto my-10 text-center">
             Stwórz nową fiszkę
@@ -33,7 +33,9 @@
                 <option v-for="group in store.groups" :key="group.id" :value="group.id">{{ group.title }}</option>
             </select>
 
-            <button  type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-0 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dodaj</button>
+
+            <button @click="store.addCard(card)" v-if="store.showModal == 'create-card'" type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dodaj</button>
+            <button @click="store.editCard(card)" v-else type="submit" class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Zaaktualizuj</button>
 
         </div>
 
@@ -42,10 +44,11 @@
 
 </template>
 <script>
+import {useCardStore} from "../store/CardsStore.js";
+
 export default {
   name: 'CreateCard',
     props:{
-      store: {},
       card: {
           default: {
               'content': '',
@@ -55,6 +58,16 @@ export default {
               'group_id': '',
           }
       },
+
+    },
+    setup(){
+
+        let store = useCardStore();
+
+
+        return{
+            store,
+        }
     }
 }
 </script>
