@@ -26,7 +26,6 @@ export const useCardStore = defineStore('cardStore', {
             return this.showModal;
         },
 
-
         setGroups(groups) {
             this.groups = groups
         },

@@ -21,7 +21,7 @@ import { ref } from 'vue'
 // const isOpen = ref(false)
 const props = defineProps(['step'])
 
-import {useCardStore} from "../store/CardsStore.js";
+import {useCardStore} from "../../store/CardsStore.js";
 let store = useCardStore();
 
 </script>

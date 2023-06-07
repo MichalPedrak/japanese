@@ -35,7 +35,7 @@
 
 <script setup>
 
-import {useCardStore} from "../store/CardsStore";
+import {useCardStore} from "@/store/CardsStore";
 
 const store = useCardStore();
 

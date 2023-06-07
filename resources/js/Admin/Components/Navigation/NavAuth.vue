@@ -1,6 +1,6 @@
 <template>
   <header class="w-100 position-fixed top-0 d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <a href="/public" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-4">Simple header</span>
     </a>
@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import { useAuthStore } from '../store/index.js'
+import { useAuthStore } from '../../../store'
 import {reactive} from "vue";
+import {router} from "@inertiajs/vue3";
 
 
 export default {

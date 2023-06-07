@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('/', function () {
-        return Inertia('HomeView');
+        return Inertia('Dashboard');
     });
 
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);

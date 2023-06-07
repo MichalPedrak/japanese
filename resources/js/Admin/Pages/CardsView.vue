@@ -2,17 +2,21 @@
 <script>
 
 import {onMounted, reactive, ref} from "vue";
-import {useCardStore} from "../store/CardsStore.js";
-import Cards from "@/Components/Cards.vue";
-import CreateButtons from "@/Components/CreateButtons.vue";
-import CardStep from "@/Pages/CardStep.vue";
-import Group from "@/Components/Group.vue";
-import CreateCard from "@/Pages/CreateCard.vue";
-import CreateGroup from "@/Components/CreateGroup.vue";
+import {useCardStore} from "@/store/CardsStore.js";
+import CreateButtons from "@/Admin/Components/CreateButtons.vue";
+
+import CardStep from "@/Admin//Components/CardStep.vue";
+
+import Cards from "@/Admin/Components/Cards/Cards.vue";
+import CreateCard from "@/Admin/Components/Cards/CreateCard.vue";
+import CardHeading from "@/Admin/Components/Cards/CardHeading.vue";
+
+import Group from "@/Admin/Components/Groups/Group.vue";
+import CreateGroup from "@/Admin/Components/Groups/CreateGroup.vue";
+import GroupHeading from "@/Admin/Components/Groups/GroupHeading.vue";
+
 import draggable from "vuedraggable";
-import Modal from "@/Components/Modal.vue";
-import GroupHeading from "@/Components/GroupHeading.vue";
-import CardHeading from "@/Components/CardHeading.vue";
+import Modal from "@/Admin/Components/Modal.vue";
 
 
 

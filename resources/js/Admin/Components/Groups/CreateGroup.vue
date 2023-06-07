@@ -32,7 +32,7 @@
 
 <script>
 import {reactive, ref} from "vue";
-import {useCardStore} from "../store/CardsStore.js";
+import {useCardStore} from "../../../store/CardsStore.js";
 
 
 export default {

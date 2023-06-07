@@ -14,7 +14,7 @@
       <div class="py-8 px-4 mx-auto nphplg:py-16">
 
         <h1 class="text-3xl"><slot name="heading"></slot></h1>
-        <CreateButtons class="sa"></CreateButtons>
+        <CreateButtons></CreateButtons>
 
         <div class="w-full  p-4 bg-white sm:p-8 dark:bg-gray-800 dark:border-gray-700">
 
@@ -24,8 +24,6 @@
             </ul>
           </div>
         </div>
-
-
       </div>
     </section>
 
@@ -33,8 +31,7 @@
   </div>
 </template>
 <script>
-import CreateButtons from "@/Components/CreateButtons.vue"
-import Group from "@/Components/Group.vue"
+import CreateButtons from "@/Admin/Components/CreateButtons.vue"
 
 export default {
   name: 'CardStep',

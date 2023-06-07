@@ -44,7 +44,7 @@
 
 </template>
 <script>
-import {useCardStore} from "../store/CardsStore.js";
+import {useCardStore} from "@/store/CardsStore.js";
 
 export default {
   name: 'CreateCard',

@@ -11,8 +11,8 @@
 <script>
 
 
-import Nav from "@/Components/Nav.vue";
-import Aside from "@/Components/Aside.vue";
+import Nav from "@/Admin/Components/Navigation/Nav.vue";
+import Aside from "@/Admin/Components/Navigation/Aside.vue";
 export default {
   name: "Layout",
     components: {Aside, Nav}
