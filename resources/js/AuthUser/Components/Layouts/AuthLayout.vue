@@ -15,21 +15,18 @@
                 <ul class="space-y-2">
                     <li>
           <span :class="{'route-active': $page.component === 'Dashboard' }"
-                class="flex gap-20 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <svg aria-hidden="true"
-                 class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path
-                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path
-                d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-
-              <Link class="flex-1 ml-3 whitespace-nowrap" href="/admin">Kokpit</Link>
-
-
+                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
+                                                                                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                                                                  clip-rule="evenodd"></path></svg>
+            <Link class="flex-1 ml-3 whitespace-nowrap" href="/">Kokpit</Link>
           </span>
                     </li>
 
                     <li>
-          <span :class="{'route-active': $page.component === 'UsersView' }"
+          <span :class="{'route-active': $page.component === 'Cards' }"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <svg aria-hidden="true"
                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -76,10 +73,10 @@
 <!--            <div style="width: 100%; height: 100px;background: white; position: fixed;">-->
 <!--                nawigacja-->
 <!--            </div>-->
-            <div style=" border-top-left-radius: 1em; background: #f6f6f6; padding: 10px 15px">
+            <div style="border-top-left-radius: 1em; background: #f6f6f6; padding: 10px 15px">
                 <div
-                    style="max-height: calc(100vh - 20px); overflow: scroll; border-radius: 1em; background: white; box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px ">
-                    <div style="height: 200vh; padding: 15px">
+                    style="overflow-y: scroll !important; max-height: calc(100vh - 20px); border-radius: 1em; background: white; box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px ">
+                    <div style="height: calc(100vh - 20px) !important; padding: 15px">
                         <slot>
 
                         </slot>

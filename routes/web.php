@@ -28,6 +28,11 @@ Route::middleware([Authenticate::class])->group(function () {
         return Inertia('Dashboard');
     });
 
+    Route::get('/fiszki', function () {
+        return Inertia('Cards');
+    });
+
+
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
 

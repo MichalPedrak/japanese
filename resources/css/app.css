@@ -8,10 +8,31 @@
     --primary-color: #ee3c20;
 }
 
-h1,h2,h3,h4,h5,h6, p, a, span, div{
-    font-family: 'Montserrat', sans-serif;
-    /*color: #ee3c20*/
 
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: white;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #b5b3b3;
+    border-radius: 2px;
+}
+
+
+h1,h2,h3,h4,h5,h6, p, a, span, div{
+    /*font-family: 'Montserrat', sans-serif;*/
+    /*color: #ee3c20*/
+    font-family: 'Libre Franklin', sans-serif;
 }
 *{
     color: #36332c;
@@ -45,4 +66,8 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
   /*0% { opacity: 0; transform: translate3d(0,-5%,0);}*/
   100% { opacity: 1; }
   /*100% { opacity: 1; transform: translate3d(0,0%,0);}*/
+}
+
+.card-shadow{
+    box-shadow: rgba(66, 68, 90, 0.17) 5px 5px 30px -10px;
 }

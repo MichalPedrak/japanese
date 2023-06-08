@@ -11,9 +11,10 @@ const piniaApp = createPinia()
 
 createInertiaApp({
     resolve: name => {
-        let pages = import.meta.glob('./*/Pages/*.vue', {eager: true})
+        let pages1 = import.meta.glob('./*/Pages/*.vue', {eager: true})
+        let pages2 = import.meta.glob('./Pages/*.vue', {eager: true})
 
-        console.log(pages)
+        let pages = {...pages1, ...pages2}
 
         Object.keys(pages).forEach(function(key){
 
