@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CardsResource;
 use App\Models\Cards;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 //use Illuminate\Support\Facades\DB;
@@ -15,14 +17,34 @@ class CardsController extends Controller
 
 
         if (!empty($id)) {
-
             return Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get();
-
         }
 
         return Cards::with('groups')->orderByDesc('id')->get();
 //        return DB::table('cards')->orderBy('id')->cursorPaginate(2);
 
+    }
+
+    public function cards($id = null)
+    {
+
+//
+//        if (!empty($id)) {
+//            return Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get();
+//        }
+
+        $cards = CardsResource::collection(Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get());
+//        $cardCollection = Collection::make($cards);
+//
+//        foreach ($cardCollection as $card){
+//            dd($card->original);
+//        }
+//        dd(CardsResource::collection(Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get()));
+
+        return Inertia('SingleCard', [
+            'cards' => $cards
+        ]);
+//        return DB::table('cards')->orderBy('id')->cursorPaginate(2);
     }
 
     public function single($id = null)

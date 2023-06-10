@@ -28,9 +28,19 @@ Route::middleware([Authenticate::class])->group(function () {
         return Inertia('Dashboard');
     });
 
+
+    // AUTH USER
     Route::get('/fiszki', function () {
         return Inertia('Cards');
     });
+
+    // AUTH USER
+//    Route::get('/fiszki/{id}', function () {
+//        return Inertia('SingleCard');
+//    });
+
+
+    Route::get('/fiszki/{id}', [\App\Http\Controllers\CardsController::class, 'cards']);
 
 
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);

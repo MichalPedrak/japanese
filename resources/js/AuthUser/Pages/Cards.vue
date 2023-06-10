@@ -35,15 +35,15 @@
                     </div>
                  </div>
                 <div class="flex">
-                   <button>Przeglądaj fiszki</button>
+                   <a :href="'/fiszki/' + group.id" class="btn btn-primary">Przeglądaj fiszki</a>
                 </div>
 
             </div>
         </li>
     </ul>
-    <div class="sticky top-5 " style="width: 18%; background: white;">
+    <div class="sticky top-5" style="width: 18%; background: white;">
         <div class="text-white shadow-lg p-5 rounded-xl bg-white sticky top-5 bg-emerald-300" >
-s
+                info banner
         </div>
     </div>
 
@@ -53,18 +53,28 @@ s
 <script>
 import {useCardStore} from "@/store/CardsStore";
 import Group from "@/Admin/Components/Groups/Group.vue";
-
+import VCalendar from 'v-calendar';
+import {ref} from "vue";
 export default {
     name: "Cards",
-    components: {Group},
+    components: {Group, VCalendar},
     display: "Fiszki",
 
     setup(){
-
+        const selectedColor = ref('blue');
+        const attrs = ref([
+            {
+                key: 'test',
+                highlight: true,
+                dates: { start: new Date(2019, 3, 15), end: new Date(2019, 3, 19) },
+            }
+        ]);
         const store = useCardStore();
         store.getGroups();
         return{
-            store
+            store,
+            selectedColor,
+            attrs,
         }
     },
 }

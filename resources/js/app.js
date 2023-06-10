@@ -5,7 +5,8 @@ import '../css/app.css';
 import Layout from "@/Admin/Components/Layouts/Layout.vue";
 import NoAuthLayout from '@/Admin/Components/Layouts/NoAuthLayout.vue';
 import AuthLayout from "@/AuthUser/Components/Layouts/AuthLayout.vue";
-
+import 'v-calendar/style.css';
+import VCalendar from 'v-calendar';
 const piniaApp = createPinia()
 
 
@@ -44,6 +45,7 @@ createInertiaApp({
         createApp({render: () => h(App, props)})
             .use(plugin)
             .use(piniaApp)
+            .use(VCalendar)
             .mount(el)
     },
     progress: {

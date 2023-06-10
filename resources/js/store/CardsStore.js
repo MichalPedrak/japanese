@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import axios from "axios";
 import { router } from '@inertiajs/vue3'
 
+// todo split into group and cards stores
+
 export const useCardStore = defineStore('cardStore', {
     state: () => ({
         groups: {},
@@ -10,6 +12,7 @@ export const useCardStore = defineStore('cardStore', {
         singleCard: {}, // for what card get details
         singleGroup: {}, // for what card get details
         showModal: false,
+        showSingleCard: 1,
     }),
 
     setters: {
@@ -47,6 +50,17 @@ export const useCardStore = defineStore('cardStore', {
             this.showStep = step
         },
 
+        changeSingleCard(action){
+
+            if(action === 'next'){
+                this.showSingleCard++;
+            }
+            if(action === 'prev'){
+                this.showSingleCard--;
+            }
+
+
+        },
 
         setError(error) {
             this.error = error
@@ -123,6 +137,11 @@ export const useCardStore = defineStore('cardStore', {
                 }
             })
                 .then(function (response) {
+
+                  response.data.forEach(function(item){
+                      console.log(item);
+                    })
+
                   setCards(response.data)
                   changeStep(2)
                   console.log(response)
