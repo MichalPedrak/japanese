@@ -2,103 +2,99 @@
 
     <div class="layout">
         <aside>
+            <button @click="showMenu = !showMenu" class="openMenu">
+                <svg fill="none" stroke="currentColor" width="36" height="36" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                </svg>
+            </button>
 
-            <div class="h-64 my-10 flex flex-wrap items-center justify-center">
-                <img height="150" width="150" style="border-radius: 50%" src="https://i.pinimg.com/564x/8e/db/9b/8edb9b0c4cbcfb0573951a6122d8fc22.jpg">
-                <div style="width: 100%; text-align: center;">
-                    <h2 style="width: 100%; text-align: center; font-size: 16px;">Witaj</h2>
-                    <h2 style="width: 100%; text-align: center; font-size: 22px;">Hayato Angor</h2>
-                </div>
+            <UserProfile/>
 
-            </div>
-            <div class="px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <div class="menu px-3 pb-4 overflow-y-auto bg-white" :class="{'showMenu': showMenu }" >
+                <button @click="showMenu = !showMenu" class="closeMenu">
+                    <svg fill="none" stroke="currentColor" width="36" height="36" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
                 <ul class="space-y-2">
-                    <li>
-          <span :class="{'route-active': $page.component === 'Dashboard' }"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true"
-                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
-                                                                                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                                                                  clip-rule="evenodd"></path></svg>
-            <Link class="flex-1 ml-3 whitespace-nowrap" href="/">Kokpit</Link>
-          </span>
-                    </li>
+                    <AsideLink v-for="item in menu" :key="item.title" :currentRoute="item.currentRoute" :link="item.link">
+                        <template #icon>
+                            <span v-html="item.icon"></span>
+                        </template>
 
-                    <li>
-          <span :class="{'route-active': $page.component === 'Cards' || $page.component === 'SingleCard' }"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true"
-                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
-                                                                                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                                                                  clip-rule="evenodd"></path></svg>
-            <Link class="flex-1 ml-3 whitespace-nowrap" href="/fiszki">Fiszki</Link>
-          </span>
-                    </li>
-                    <li>
-          <span :class="{'route-active': $page.component === 'CardsView' }"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true"
-                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
-                                                                                                  d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                                                                                  clip-rule="evenodd"></path></svg>
-            <Link class="flex-1 ml-3 whitespace-nowrap" href="/admin/groups  ">Kursy</Link>
-          </span>
-                    </li>
+                        {{ item.title }}
 
-                    <li style="margin-top: auto;">
-          <span :class="{'route-active': $page.component === 'SettingsView' }"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true"
-                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
-                                                                                                  d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                                                                                  clip-rule="evenodd"></path></svg>
-            <Link class="flex-1 ml-3 whitespace-nowrap" href="/admin/groups  ">Ustawienia</Link>
-          </span>
-                    </li>
-
-                    <!--        <li>-->
-                    <!--          <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">-->
-                    <!--            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>-->
-                    <!--            <span class="flex-1 ml-3 whitespace-nowrap">Wyloguj się</span>-->
-                    <!--          </a>-->
-                    <!--        </li>-->
+                    </AsideLink>
                 </ul>
             </div>
         </aside>
-        <main class="main">
-<!--            <div style="width: 100%; height: 100px;background: white; position: fixed;">-->
-<!--                nawigacja-->
-<!--            </div>-->
-            <div style="border-top-left-radius: 1em; background: #f6f6f6; padding: 10px 15px">
-                <div
-                    style="overflow-y: scroll !important; max-height: calc(100vh - 20px); border-radius: 1em; background: white; box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px ">
-                    <div style="height: calc(100vh - 20px) !important; padding: 15px">
-                        <slot>
+        <main>
+            <div class="box-wrapper">
+                <div class="box">
+                    <slot>
 
-                        </slot>
-                    </div>
+                    </slot>
                 </div>
-
             </div>
 
         </main>
-
-
     </div>
 
 
 </template>
 
 <script>
-import {Link} from "@inertiajs/vue3";
+import AsideLink from "@/AuthUser/Components/Layouts/AsideLink.vue";
+import {ref} from "vue";
+import UserProfile from "@/AuthUser/Components/Layouts/UserProfile.vue";
 
 export default {
     name: "AuthLayout",
-    components: {Link},
+    components: {UserProfile, AsideLink},
+    setup(){
+        let showMenu = ref(false);
+        const menu = [
+            {
+                title: 'Kokpit',
+                link: '/',
+                currentRoute: ['Dashboard'],
+                icon: `
+                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                `,
+            },
+            {
+                title: 'Fiszki',
+                link: '/fiszki',
+                currentRoute: ['Cards'],
+                icon: `
+                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                `,
+            },
+            {
+                title: 'Panel admina',
+                link: '/admin',
+                currentRoute: [],
+                icon: `
+                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                `,
+            },
+        ];
+
+        return{
+            showMenu,
+            menu,
+        }
+
+
+    }
+
 }
 </script>
 
@@ -109,14 +105,90 @@ export default {
 }
 
 aside {
-    width: 20%;
+    width: 350px;
     height: 100vh;
+}
+
+main {
+    width:100%;
+    border-top-left-radius: 1em;
+    background: #f6f6f6;
+    padding: 10px 15px;
+}
+
+.box-wrapper{
+    overflow-y: scroll !important;
+    max-height: calc(100vh - 20px);
+    border-radius: 1em;
+    background: white;
+    box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px;
+}
+.box{
+    height: calc(100vh - 20px) !important;
+    padding: 15px
+}
+.openMenu, .closeMenu{
+    display: none;
+
+}
+
+@media all and (max-width: 992px){
+    main{
+        border-top-right-radius: 1em;
+        padding: 10px;
+    }
+    .layout{
+        flex-wrap: wrap;
+    }
+    aside{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu{
+        box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px;
+        position: absolute;
+        z-index: 10000;
+        height: 100vh;
+        width: 500px;
+        padding-top: 100px;
+        background: white;
+        margin-left: -520px;
+        transition: all 0.5s ease-in-out;
+    }
+    .showMenu{
+        margin-left: 0px !important;
+        transition: all 0.5s ease-in-out;
+    }
+    .openMenu, .closeMenu{
+        display: block;
+        padding: 24px;
+    }
+    .closeMenu{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+    .box-wrapper{
+        max-height: calc(100vh - 120px);
+    }
+    .box{
+        height: calc(100vh - 120px) !important;
+    }
 
 }
 
 
-main {
+@media all and (max-width: 500px){
+    .menu{
 
-    width: 100%;
+        width: 100%;
+
+    }
+
+
 }
 </style>

@@ -5,18 +5,18 @@
             <div class="w-full flex flex-wrap justify-center ">
                 <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 500px;" class="fadeIn girelative shadow-lg rounded-xl h-96 flip-card" v-for="card in cards.data" :key="card.id">
                     <div class="flip-card-front">
-                        <span>
+                        <span class="card-title">
                             {{ card.content }}
                         </span>
-                        <span>
+                        <span class="card-example">
                             {{ card.content_example }}
                         </span>
                     </div>
                     <div class="flip-card-back">
-                        <span>
+                        <span class="card-title">
                             {{ card.definition }}
                         </span>
-                        <span>
+                        <span class="card-example">
                             {{ card.definition_example }}
                         </span>
                     </div>
@@ -67,16 +67,29 @@ export default {
 .flip-card{
     transition: transform 0.6s;
     transform-style: preserve-3d;
+
 }
 
 
 .flip-card-front, .flip-card-back {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 80px;
+    justify-content: center;
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     padding: 15px;
+}
+
+.card-title{
+    font-size: 36px;
+    width: 100%;
+    text-align: center;
 }
 
 .flip-card-back{

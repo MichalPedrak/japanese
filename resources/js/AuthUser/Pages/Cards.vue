@@ -20,17 +20,7 @@
                          <span>
                              Tutaj będzie znajdować się opis naszych fiszek
                         </span>
-                        <div class="flex gap-5">
-                            <div class="my-3 text-white shadow rounded-xl py-1 px-4" style="background: #7dd3fc">
-                                Ilość fiszek: 15
-                            </div>
-                            <div class="my-3 text-white shadow rounded-xl py-1 px-4" style="background: #bef264">
-                                Fiszki umiem: 10
-                            </div>
-                            <div class="my-3 text-white shadow rounded-xl py-1 px-4" style="background: #fb7185">
-                                Do nauki: 5
-                            </div>
-                        </div>
+                        <CardsStatus/>
 
                     </div>
                  </div>
@@ -52,12 +42,12 @@
 
 <script>
 import {useCardStore} from "@/store/CardsStore";
-import Group from "@/Admin/Components/Groups/Group.vue";
-import VCalendar from 'v-calendar';
 import {ref} from "vue";
+import CardsStatus from "@/AuthUser/Pages/CardsStatus.vue";
+
 export default {
     name: "Cards",
-    components: {Group, VCalendar},
+    components: {CardsStatus},
     display: "Fiszki",
 
     setup(){
