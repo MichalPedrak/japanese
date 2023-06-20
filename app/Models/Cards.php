@@ -16,7 +16,9 @@ class Cards extends Model
     public function groups(){ // hasOne hasMany belongsTo blongsToMany
         return $this->belongsTo(Groups::class);
     }
-
+    public function users(){ // hasOne hasMany belongsTo blongsToMany
+        return $this->belongsTo(User::class);
+    }
 
     public static function booted ()
     {

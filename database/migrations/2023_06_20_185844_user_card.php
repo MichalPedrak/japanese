@@ -13,15 +13,9 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id');
-            $table->string('content');
-
+            $table->foreignId('user_id');
+            $table->foreignId('card_id');
             $table->enum('status', ['learning', 'learned']);
-            $table->string('content_example');
-            $table->string('definition');
-            $table->string('definition_example');
-
-            $table->timestamps();
         });
     }
 
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        //
     }
 };
