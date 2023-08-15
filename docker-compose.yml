@@ -27,11 +27,35 @@ services:
         ports:
             - 3306:3306
         environment:
-            MYSQL_DATABASE: laravel
-            MYSQL_ROOT_USER: root
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
             MYSQL_ROOT_PASSWORD: password
-            MYSQL_ROOT_HOST: localhost
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+#            MYSQL_ROOT_HOST: localhost
         volumes:
             - db-data:/var/lib/mysql
+
+    node:
+        build:
+            # gdzie
+            context: .
+            #php varaiable z dockerfile
+            target: node
+        volumes:
+            - .:/usr/src
+            - ./node_modules:/usr/src/node_modules
+        tty: true
+    vite_docker:
+        image: node:alpine
+        container_name: vite_docker
+        entrypoint: /bin/sh
+        ports:
+            - 8001:8001
+        working_dir: /srv/app
+        volumes:
+            -   type: bind
+                source: ./
+                target: /srv/app
+        tty: true
 volumes:
     db-data: ~

@@ -11,7 +11,7 @@ else
     echo "ENV file exist"
 fi
 
-php artisan migrate
+#php artisan migrate
 php artisan key:generate
 
 php artisan serve --port=$PORT --host=0.0.0.0 --env=.env
