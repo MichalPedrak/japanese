@@ -1,20 +1,20 @@
 <template>
-    <div class="category-prompts-sidebar-wrapper">
-        <div class="category-prompts-sidebar">
-            <div class="category-prompts-sidebar-close" @click="closeSidebar" v-show="!isClosedSidebar">
+    <div class="cards-right-sidebar-wrapper">
+        <div class="cards-right-sidebar">
+            <div class="cards-right-sidebar-close" @click="closeSidebar" v-show="!isClosedSidebar">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" height="24" width="24" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </div>
 
-            <div class="category-prompts-sidebar-close" @click="openSidebar" v-show="isClosedSidebar">
+            <div class="cards-right-sidebar-close" @click="openSidebar" v-show="isClosedSidebar">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
                 </svg>
             </div>
-            <h2 class="category-prompts-sidebar-title"></h2>
-            <div class="category-prompts-container">
+            <h2 class="cards-right-sidebar-title"></h2>
+            <div class="cards-right-container">
 
             </div>
         </div>
@@ -33,18 +33,18 @@ export default {
         let isClosedSidebar = ref(false);
 
         let closeSidebar = function (){
-            let sidebar = document.querySelector('.category-prompts-sidebar');
-            let sidebarWrapper = document.querySelector('.category-prompts-sidebar-wrapper');
-            sidebar.classList.add('category-prompts-sidebar-hide');
-            sidebarWrapper.classList.add('category-prompts-sidebar-wrapper-hide');
+            let sidebar = document.querySelector('.cards-right-sidebar');
+            let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
+            sidebar.classList.add('cards-right-sidebar-hide');
+            sidebarWrapper.classList.add('cards-right-sidebar-wrapper-hide');
             isClosedSidebar.value = true;
         }
 
         let openSidebar = function (){
-            let sidebar = document.querySelector('.category-prompts-sidebar');
-            let sidebarWrapper = document.querySelector('.category-prompts-sidebar-wrapper');
-            sidebar.classList.remove('category-prompts-sidebar-hide');
-            sidebarWrapper.classList.remove('category-prompts-sidebar-wrapper-hide');
+            let sidebar = document.querySelector('.cards-right-sidebar');
+            let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
+            sidebar.classList.remove('cards-right-sidebar-hide');
+            sidebarWrapper.classList.remove('cards-right-sidebar-wrapper-hide');
             isClosedSidebar.value = false;
             //testaccpimtswtocj32
         }
@@ -61,7 +61,7 @@ export default {
 <style scoped>
 
 
-    .category-prompts-sidebar-wrapper {
+    .cards-right-sidebar-wrapper {
         max-width: 525px !important;
         width: 100% !important;
         transition: all 0.3s;
@@ -69,7 +69,7 @@ export default {
         position: relative;
         right: 10px;
     }
-    .category-prompts-sidebar {
+    .cards-right-sidebar {
         position: fixed;
         top: 10px;
         border-radius: 10px;
@@ -88,7 +88,7 @@ export default {
         z-index: 9999999;
     }
 
-  .category-prompts-sidebar-hide {
+  .cards-right-sidebar-hide {
       margin-right: -30px;
       right: 50px;
       width: 80px;
@@ -96,56 +96,56 @@ export default {
       overflow: hidden;
     }
 
-    .category-prompts-sidebar-wrapper-hide {
+    .cards-right-sidebar-wrapper-hide {
         max-width: 80px !important;
         transition: all 0.3s;
     }
 
     @media all and (max-width: 600px){
-        .category-prompts-sidebar {
+        .cards-right-sidebar {
             right: -600px;
             width: 100%;
         }
     }
     @media all and (max-width: 500px){
-        .category-prompts-sidebar {
+        .cards-right-sidebar {
             right: -500px;
         }
     }
     @media all and (max-width: 400px){
-        .category-prompts-sidebar {
+        .cards-right-sidebar {
             right: -400;
         }
     }
 
-    .category-prompts-container {
+    .cards-right-container {
         padding: 20px;
     }
 
-    .category-prompts-sidebar.show {
+    .cards-right-sidebar.show {
         right: 0;
     }
 
-    .category-prompts-sidebar-close, .category-prompts-sidebar-open{
+    .cards-right-sidebar-close, .cards-right-sidebar-open{
         user-select: none;
         max-width: 29px;
         cursor: pointer;
     }
 
-    .category-prompts-sidebar::-webkit-scrollbar {
+    .cards-right-sidebar::-webkit-scrollbar {
         width: 6px;
     }
 
-    .category-prompts-sidebar::-webkit-scrollbar-thumb {
+    .cards-right-sidebar::-webkit-scrollbar-thumb {
         background-color: #ccc;
         border-radius: 3px;
     }
 
-    .category-prompts-sidebar::-webkit-scrollbar-thumb:hover {
+    .cards-right-sidebar::-webkit-scrollbar-thumb:hover {
         background-color: #aaa;
     }
 
-    .category-prompts-sidebar::-webkit-scrollbar-track {
+    .cards-right-sidebar::-webkit-scrollbar-track {
         background-color: transparent;
     }
 
