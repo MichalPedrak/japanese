@@ -46,7 +46,7 @@ export default {
             sidebar.classList.remove('category-prompts-sidebar-hide');
             sidebarWrapper.classList.remove('category-prompts-sidebar-wrapper-hide');
             isClosedSidebar.value = false;
-            //testaccpimtswtocj
+            //testaccpimtswtocj32
         }
 
         return{
