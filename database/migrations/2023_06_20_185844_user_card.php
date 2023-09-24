@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('card_id');
-            $table->enum('status', ['learning', 'learned']);
-        });
+//        Schema::create('cards', function (Blueprint $table) {
+//            $table->id();
+//            $table->foreignId('user_id');
+//            $table->foreignId('card_id');
+//            $table->enum('status', ['learning', 'learned']);
+//        });
     }
 
     /**

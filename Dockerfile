@@ -33,9 +33,13 @@ WORKDIR /var/www
 
 #chcemy skopiowac pliki z local na docker serwer
 COPY . .
-COPY . /var/www/public
+COPY package.json .
+COPY package-lock.json .
+
 
 
 RUN npm install
 
 VOLUME /var/www/node_modules
+
+

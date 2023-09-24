@@ -23,6 +23,7 @@ services:
         depends_on:
             - database
     database:
+        container_name: database
         image: mysql:8.0
         ports:
             - 3306:3306
@@ -55,7 +56,17 @@ services:
         volumes:
             -   type: bind
                 source: ./
-                target: /srv/app
+                target: /src/app
         tty: true
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:5.0.1
+        restart: always
+        environment:
+            PMA_HOST: database
+            PMA_USER: root
+            PMA_PASSWORD: root
+            UPLOAD_LIMIT: 300M
+        ports:
+            - "8089:80"
 volumes:
     db-data: ~

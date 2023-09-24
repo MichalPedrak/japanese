@@ -126,7 +126,7 @@ main {
 }
 .box{
     height: calc(100vh - 20px) !important;
-    padding: 15px
+    //padding: 15px
 }
 .openMenu, .closeMenu{
     display: none;
