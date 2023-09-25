@@ -14,7 +14,135 @@
                 </svg>
             </div>
             <h2 class="cards-right-sidebar-title"></h2>
-            <div class="cards-right-container">
+            <div class="cards-right-container" v-show="!isClosedSidebar">
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+<!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>Treść fiszki</span>
+                    <span> - </span>
+                    <span>内容</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>Treść fiszki</span>
+                    <span> - </span>
+                    <span>内容</span>
+                    <!--                    <span>定義</span>-->
+                </div><div class="cards-right-item">
+                    <span>Treść fiszki</span>
+                    <span> - </span>
+                    <span>内容</span>
+                    <!--                    <span>定義</span>-->
+                </div><div class="cards-right-item cards-right-item__active">
+                    <span>Treść fiszki</span>
+                    <span> - </span>
+                    <span>内容</span>
+                    <!--                    <span>定義</span>-->
+                </div><div class="cards-right-item">
+                    <span>Treść fiszki</span>
+                    <span> - </span>
+                    <span>内容</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div><div class="cards-right-item">
+                <span>jabłko</span>
+                <span> - </span>
+                <span>アップル</span>
+                <!--                    <span>定義</span>-->
+            </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
+                <div class="cards-right-item">
+                    <span>jabłko</span>
+                    <span> - </span>
+                    <span>アップル</span>
+                    <!--                    <span>定義</span>-->
+                </div>
 
             </div>
         </div>
@@ -62,6 +190,8 @@ export default {
 
 
     .cards-right-sidebar-wrapper {
+
+        overflow: clip;
         max-width: 525px !important;
         width: 100% !important;
         transition: all 0.3s;
@@ -69,6 +199,7 @@ export default {
         position: relative;
         right: 10px;
     }
+
     .cards-right-sidebar {
         position: fixed;
         top: 10px;
@@ -79,6 +210,7 @@ export default {
         height: calc(100% - 20px);
         padding: 25px;
         background-color: white;
+        //background-color: #f6f6f6;
         box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px;
         border-width: 0px 0px 0px 1px;
         border-color: rgba(0, 0, 0, 0.1);
@@ -133,7 +265,8 @@ export default {
     }
 
     .cards-right-sidebar::-webkit-scrollbar {
-        width: 6px;
+        display: none;
+        //width: 6px;
     }
 
     .cards-right-sidebar::-webkit-scrollbar-thumb {
@@ -148,5 +281,19 @@ export default {
     .cards-right-sidebar::-webkit-scrollbar-track {
         background-color: transparent;
     }
+    .cards-right-item{
+        font-size: 14px;
+        margin: 15px 0px;
+        border-radius: 10px;
+        background: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #f5f5f5;
+        //box-shadow: rgb(66 68 90 / 17%) 5px 5px 30px -10px;
 
+    }
+    .cards-right-item__active{
+        background: #f6f6f6;
+    }
 </style>
