@@ -41,6 +41,8 @@ class CardsController extends Controller
 //        }
 //        dd(CardsResource::collection(Cards::with('groups')->orderByDesc('position')->where('group_id', '=', $id)->get()));
 
+        //
+
         return Inertia('SingleCard', [
             'cards' => $cards
         ]);

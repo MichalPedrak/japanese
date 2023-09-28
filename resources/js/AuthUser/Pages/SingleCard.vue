@@ -45,7 +45,7 @@
                </div>
            </div>
        </div>
-        <CardsSidebar>
+        <CardsSidebar :cards="cards">
         </CardsSidebar>
 
     </div>
@@ -61,9 +61,8 @@ export default {
     components: {CardsSidebar},
     props: {
         cards: [],
-
     },
-    setup(){
+    setup(props){
         let rotate = ref(false);
         const store = useCardStore();
 
@@ -73,11 +72,13 @@ export default {
             store.changeSingleCard(action)
 
         }
+        let cards = props.cards;
 
         return{
             changeStep,
             store,
             rotate,
+            cards,
         }
     }
 }

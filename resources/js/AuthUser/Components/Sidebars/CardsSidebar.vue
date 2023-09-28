@@ -15,133 +15,12 @@
             </div>
             <h2 class="cards-right-sidebar-title"></h2>
             <div class="cards-right-container" v-show="!isClosedSidebar">
-                <div class="cards-right-item">
-                    <span>jabłko</span>
+
+                <div class="cards-right-item" v-for="card in cards.data">
+                    <span>{{ card.content }}</span>
                     <span> - </span>
-                    <span>アップル</span>
+                    <span>{{ card.definition }}</span>
 <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>Treść fiszki</span>
-                    <span> - </span>
-                    <span>内容</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>Treść fiszki</span>
-                    <span> - </span>
-                    <span>内容</span>
-                    <!--                    <span>定義</span>-->
-                </div><div class="cards-right-item">
-                    <span>Treść fiszki</span>
-                    <span> - </span>
-                    <span>内容</span>
-                    <!--                    <span>定義</span>-->
-                </div><div class="cards-right-item cards-right-item__active">
-                    <span>Treść fiszki</span>
-                    <span> - </span>
-                    <span>内容</span>
-                    <!--                    <span>定義</span>-->
-                </div><div class="cards-right-item">
-                    <span>Treść fiszki</span>
-                    <span> - </span>
-                    <span>内容</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div><div class="cards-right-item">
-                <span>jabłko</span>
-                <span> - </span>
-                <span>アップル</span>
-                <!--                    <span>定義</span>-->
-            </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
-                </div>
-                <div class="cards-right-item">
-                    <span>jabłko</span>
-                    <span> - </span>
-                    <span>アップル</span>
-                    <!--                    <span>定義</span>-->
                 </div>
 
             </div>
@@ -152,12 +31,15 @@
 <script>
 
 import {ref} from "vue";
+import {useCardStore} from "@/store/CardsStore";
 
 export default {
     name: "CardsSidebar",
-
-
-    setup(){
+    props: {
+        cards: [],
+    },
+    setup(props){
+        const store = useCardStore();
         let isClosedSidebar = ref(false);
 
         let closeSidebar = function (){
@@ -177,10 +59,14 @@ export default {
             //testaccpimtswtocj32
         }
 
+        let cards = props.cards
+
         return{
             closeSidebar,
             openSidebar,
             isClosedSidebar,
+            store,
+            cards
         }
     },
 }
