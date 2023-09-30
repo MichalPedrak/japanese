@@ -1,9 +1,18 @@
 <template>
     <div class="flex relative">
-       <div class="m-2 lg:m-12 mb-12" style="overflow-x: hidden;">
-           <h1 class="text-4xl mt-10 mb-8">
-               Hiragana
-           </h1>
+       <div class="" style="overflow-x: hidden;">
+            <div class="m-2 lg:m-12 mb-4 pb-4 mt-2 border-b ">
+                <h1 class="text-4xl mb-1">
+                    Hiragana
+                </h1>
+                <span class="text-xs  ml-1">
+                    Kokpit / Fiszki / Hiragana
+                </span>
+            </div>
+
+
+           <span>
+           </span>
            <div class="xl:m-16 lg:m-8 m-1 flex flex-wrap items-center justify-center gap-5 card">
 
 
