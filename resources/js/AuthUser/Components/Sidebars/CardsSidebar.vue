@@ -14,9 +14,9 @@
                 </svg>
             </div>
             <h2 class="cards-right-sidebar-title"></h2>
-            <div class="cards-right-container" v-show="!isClosedSidebar">
+            <div class="cards-right-container" >
 
-                <div class="cards-right-item" v-for="card in cards.data">
+                <div class="cards-right-item" v-for="card in cards.data" :class="{active: store.showSingleCard === card.order}"  @click="[store.changeSingleCard('changeSidebar', card.order), closeSidebar(true)]">
                     <span>{{ card.content }}</span>
                     <span> - </span>
                     <span>{{ card.definition }}</span>
@@ -42,7 +42,12 @@ export default {
         const store = useCardStore();
         let isClosedSidebar = ref(false);
 
-        let closeSidebar = function (){
+        let closeSidebar = function (closeByChange = null){
+
+            if(closeByChange == true && window.innerWidth > 1024 ){
+                return;
+            }
+
             let sidebar = document.querySelector('.cards-right-sidebar');
             let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
             sidebar.classList.add('cards-right-sidebar-hide');
@@ -78,13 +83,47 @@ export default {
     .cards-right-sidebar-wrapper {
 
         overflow: clip;
-        max-width: 525px !important;
+        max-width: 350px;
         width: 100% !important;
         transition: all 0.3s;
         top: 10px;
         position: relative;
         right: 10px;
     }
+
+    @media all and (max-width: 1300px){
+        .cards-right-sidebar-wrapper {
+
+            max-width: 80px !important;
+        }
+
+    }
+    @media all and (max-width: 1024px){
+        .cards-right-sidebar-wrapper{
+            position: fixed;
+            max-width: 100% !important;
+            inset: unset;
+            bottom: 0px !important;
+            left: 0px !important;
+            height: 60px !important;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cards-right-sidebar-hide {
+            transition: all 0s !important;
+            border-width: 0px !important;
+            margin: 10px;
+            width: 50px !important;
+            padding: 10px !important;
+            box-shadow: none !important;
+            position: static !important;
+            height: 50px !important;
+        }
+    }
+
+
+
 
     .cards-right-sidebar {
         position: fixed;
@@ -107,35 +146,59 @@ export default {
     }
 
   .cards-right-sidebar-hide {
-      margin-right: -30px;
+      margin-right: -30px !important;
       right: 50px;
       width: 80px;
       transition: all 0.3s;
       overflow: hidden;
     }
-
+    .cards-right-sidebar-hide .cards-right-item{
+        //animation: fadeOut  1s ;
+        opacity: 0%;
+    }
+    .cards-right-sidebar-hide .cards-right-container{
+        animation: fadeOut  1s ;
+        //opacity: 0%;
+    }
     .cards-right-sidebar-wrapper-hide {
-        max-width: 80px !important;
+        max-width: 80px;
         transition: all 0.3s;
+        margin-right: unset;
     }
 
-    @media all and (max-width: 600px){
+    @media all and (max-width: 1024px){
         .cards-right-sidebar {
-            right: -600px;
+            //opacity: 0%;
+            right: 0px;
             width: 100%;
+            display: block;
+            position: fixed;
+            z-index: 19999999;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            transition: unset;
+            border-radius: 0px;
+
         }
-    }
-    @media all and (max-width: 500px){
-        .cards-right-sidebar {
-            right: -500px;
+
+        .cards-right-container{
+
+            animation: fadeIn 1s;
+
         }
-    }
-    @media all and (max-width: 400px){
-        .cards-right-sidebar {
-            right: -400;
-        }
+
+
     }
 
+    @keyframes fadeOut {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
     .cards-right-container {
         padding: 20px;
     }
@@ -181,5 +244,9 @@ export default {
     }
     .cards-right-item__active{
         background: #f6f6f6;
+    }
+
+    .cards-right-item.active{
+        background: #f5f5f5;
     }
 </style>

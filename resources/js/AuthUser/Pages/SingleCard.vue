@@ -4,14 +4,14 @@
            <h1 class="text-4xl mt-10 mb-8">
                Hiragana
            </h1>
-           <div class="lg:m-32 flex flex-wrap items-center justify-center gap-5 card">
+           <div class="xl:m-16 lg:m-8 m-1 flex flex-wrap items-center justify-center gap-5 card">
 
 
                <div class="changeTabButtons w-100 flex justify-start" style="width: 800px;">
                    <button class="w-100 text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-2 mr-2 mb-2 focus:outline-none dark:focus:ring-blue-800">Fiszki</button>
                </div>
                <div class="w-full flex flex-wrap justify-center ">
-                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px;" class="fadeIn girelative shadow-lg rounded-xl h-96 flip-card" v-for="card in cards.data" :key="card.id">
+                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px;" class="fadeInTranslate girelative shadow-lg rounded-xl h-96 flip-card" v-for="card in cards.data" :key="card.id">
                        <div class="flip-card-front">
                         <span class="card-title">
                             {{ card.content }}
@@ -86,7 +86,8 @@ export default {
 
 <style scoped>
 .card{
-    width: 80%;
+    //width: 80%;
+
 }
 .disable{
     background: #a0aec0;
@@ -132,7 +133,22 @@ export default {
     background: #ee3c20;
 }
 
-@media all and (max-width: 992px){
+.fadeInTranslate{
+    animation: 0.5s rotate;
+}
+@keyframes rotate {
+    0%{
+        opacity: 0;
+        transform: rotate(10deg);
+    }
+
+    100%{
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+@media all and (max-width: 1024px){
     .card{
         width: 100%;
     }

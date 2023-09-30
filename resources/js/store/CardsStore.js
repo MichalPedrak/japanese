@@ -50,13 +50,18 @@ export const useCardStore = defineStore('cardStore', {
             this.showStep = step
         },
 
-        changeSingleCard(action){
+        changeSingleCard(action, order = null){
 
             if(action === 'next'){
                 this.showSingleCard++;
             }
             if(action === 'prev'){
                 this.showSingleCard--;
+            }
+            console.log('tak :' + order);
+
+            if(order){
+                this.showSingleCard = order;
             }
 
 

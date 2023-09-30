@@ -24,7 +24,7 @@ export default {
     width: 100%;
 }
 
-@media all and (max-width: 992px){
+@media all and (max-width: 1024px){
     .user-info img{
         width: 50px;
         height: 50px;

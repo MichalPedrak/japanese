@@ -133,7 +133,7 @@ main {
 
 }
 
-@media all and (max-width: 992px){
+@media all and (max-width: 1024px){
     main{
         border-top-right-radius: 1em;
         padding: 10px;
@@ -174,7 +174,7 @@ main {
     }
 
     .box-wrapper{
-        max-height: calc(100vh - 120px);
+        max-height: calc(100vh - 180px);
     }
     .box{
         height: calc(100vh - 120px) !important;
