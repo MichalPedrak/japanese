@@ -8,7 +8,7 @@
                 <span class="text-xs  ml-1">
                     Kokpit / Fiszki / Hiragana
                 </span>
-            </div>yiexohsmjz
+            </div>
 
 
            <span>
