@@ -37,8 +37,6 @@ class AuthController extends Controller
 
         User::create($validated);
 
-
-
     }
 
     public function create(Request $request){

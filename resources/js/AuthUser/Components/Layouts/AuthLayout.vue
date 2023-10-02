@@ -26,6 +26,9 @@
                         {{ item.title }}
 
                     </AsideLink>
+                    <div @click="logout" class="cursor-pointer flex items-center mr-5 p-4">
+                        <span class="mr-3">Wyloguj się</span>
+                    </div>
                 </ul>
             </div>
         </aside>
@@ -48,11 +51,13 @@
 import AsideLink from "@/AuthUser/Components/Layouts/AsideLink.vue";
 import {ref} from "vue";
 import UserProfile from "@/AuthUser/Components/Layouts/UserProfile.vue";
-
+import {useAuthStore} from "@/store";
+import {router} from "@inertiajs/vue3";
 export default {
     name: "AuthLayout",
     components: {UserProfile, AsideLink},
     setup(){
+
         let showMenu = ref(false);
         const menu = [
             {
@@ -85,9 +90,22 @@ export default {
                     </svg>
                 `,
             },
+
         ];
+        let store = useAuthStore();
+        const logout = async () => {
+            await fetch('http://localhost:8000/api/logout', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+            })
+            await store.logout()
+            await router.push('/');
+        };
+
 
         return{
+            logout,
             showMenu,
             menu,
         }
