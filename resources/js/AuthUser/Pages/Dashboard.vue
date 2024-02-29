@@ -1,8 +1,12 @@
 <template>
     <div>
-        csadasdassdadasdasdadasdasdasdsa
-        <br>
-        <br><br><br><br><br>
+        ostatnio używane zestawy fiszek
+    </div>
+    <div>
+        sprawdź nowo dodane zestawy fiszek
+    </div>
+    <div>
+        sprawdź nowo dodane zestawy fiszek
     </div>
 </template>
 

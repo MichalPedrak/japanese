@@ -94,7 +94,7 @@ export default {
         ];
         let store = useAuthStore();
         const logout = async () => {
-            await fetch('http://localhost:8000/api/logout', {
+            await fetch('/api/logout', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
