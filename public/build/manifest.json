@@ -9,7 +9,7 @@
     "src": "resources/images/baner.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-a9c295ec.css",
+    "file": "assets/app-85dfc228.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -17,9 +17,9 @@
       "assets/baner-abdc7b10.svg"
     ],
     "css": [
-      "assets/app-a9c295ec.css"
+      "assets/app-85dfc228.css"
     ],
-    "file": "assets/app-a6df5f22.js",
+    "file": "assets/app-08d8e4c0.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
