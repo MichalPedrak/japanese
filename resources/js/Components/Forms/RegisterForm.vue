@@ -40,10 +40,16 @@ export default {
 
 
         let submit = async () => {
+            document.querySelector('.submit .loader').classList.add('show-loader');
+            document.querySelector('.submit .button-content').classList.add('hide-content');
+
             await store.register(form);
 
+            setTimeout(() => {
+                document.querySelector('.submit .loader').classList.remove('show-loader');
+                document.querySelector('.submit .button-content').classList.remove('hide-content');
 
-
+            }, 500)
         }
 
 

@@ -8,6 +8,7 @@ export const useAuthStore = defineStore('authStore', {
             name: "",
             email: "",
             password: "",
+            login: "",
         },
 
         user: JSON.parse(localStorage.getItem("user"))
@@ -20,6 +21,7 @@ export const useAuthStore = defineStore('authStore', {
     actions: {
         setError(error) {
             this.error = error
+            console.log(this.error);
         },
 
         setUser(user) {
@@ -55,11 +57,15 @@ export const useAuthStore = defineStore('authStore', {
                     localStorage.setItem("user", JSON.stringify(response.data.user));
 
                     router.visit('/');
+
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?
-                    updateError(errorResponse.response.data.error);
+
+                    updateError({login: errorResponse.response.data.errors } );
+
                 });
+
         },
 
         async logout(){

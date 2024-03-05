@@ -2,7 +2,7 @@
     <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
         <InputForm v-model="form.email" name="email" id="email" input="email" placeholder="kowalski@email.com">Email</InputForm>
         <InputForm v-model="form.password" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
-
+        <div class="warning" :class="[store.error.login === '' || store.error.email || store.error.password ? 'hide-notification' : 'show-notification' ]" ><img src="../../../../resources/images/notifications/warning.svg" />{{ store.error.login }}&nbsp;</div>
 
 <!--        <div class="flex items-center justify-between">-->
 <!--            <div class="flex items-start">-->
@@ -38,6 +38,7 @@ import {router} from "@inertiajs/vue3";
 
 export default {
     name: "LoginForm",
+
     components: {InputForm, ChangeForm, FormButton},
     setup(){
         const store = useAuthStore();
@@ -47,11 +48,19 @@ export default {
             email: "",
             password: "",
         })
-
+        let loading = reactive({state: false});
 
         let submit = async () => {
-            await store.login(form);
 
+            document.querySelector('.submit .loader').classList.add('show-loader');
+            document.querySelector('.submit .button-content').classList.add('hide-content');
+
+            await store.login(form);
+            setTimeout(() => {
+                document.querySelector('.submit .loader').classList.remove('show-loader');
+                document.querySelector('.submit .button-content').classList.remove('hide-content');
+
+            }, 500)
 
         }
 
@@ -59,6 +68,8 @@ export default {
         return {
             submit,
             form,
+            store,
+            loading,
 
         }
     }
