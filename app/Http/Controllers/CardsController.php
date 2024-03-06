@@ -126,5 +126,12 @@ class CardsController extends Controller
 
 
     }
+
+    public function importCards(Request $request, $groupId, $cardsJson){
+
+
+        var_dump($groupId, $cardsJson);
+        exit();
+    }
 }
 

@@ -236,7 +236,9 @@ export default {
     <Modal v-if="store.showModal == 'create-group' || store.showModal == 'edit-group' " >
         <CreateGroup></CreateGroup>
     </Modal>
-
+    <Modal v-if="store.showModal == 'importCards' " >
+        <CreateGroup></CreateGroup>
+    </Modal>
 
 
 <!--    <div v-if="store.showStep == 5" class="relative mt-5 content w-75 text-center" style="background: lightblue; height: 250px; border-radius: 8px;">-->
