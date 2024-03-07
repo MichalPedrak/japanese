@@ -44,6 +44,7 @@
         </main>
     </div>
 
+    <button @click="fs" id="goFS" style="position: absolute; top:0px; background: red; z-index: 1212121212;">Go fullscreen</button>
 
 </template>
 
@@ -57,6 +58,9 @@ export default {
     name: "AuthLayout",
     components: {UserProfile, AsideLink},
     setup(){
+        let fs = function () {
+                document.body.requestFullscreen();
+            }
 
         let showMenu = ref(false);
         const menu = [
@@ -108,6 +112,7 @@ export default {
             logout,
             showMenu,
             menu,
+            fs
         }
 
 
