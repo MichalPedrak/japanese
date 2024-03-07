@@ -18,7 +18,7 @@
                 </button>
 
                 <ul class="space-y-2">
-                    <AsideLink v-for="item in menu" :key="item.title" :currentRoute="item.currentRoute" :link="item.link">
+                    <AsideLink @click="showMenu = !showMenu" v-for="item in menu" :key="item.title" :currentRoute="item.currentRoute" :link="item.link">
                         <template #icon>
                             <span v-html="item.icon"></span>
                         </template>
