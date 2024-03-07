@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('authStore', {
 
                     localStorage.setItem("user", JSON.stringify(response.data.user));
 
-                    router.visit('/');
+                    router.visit('/fiszki');
 
                 })
                 .catch(function (errorResponse) {

@@ -90,6 +90,10 @@ export default {
 
         let cards = props.cards
 
+
+
+
+
         return{
             closeSidebar,
             openSidebar,
