@@ -143,9 +143,6 @@ class CardsController extends Controller
         }
 
 
-
-        var_dump($json);
-        exit();
     }
 }
 
