@@ -16,11 +16,11 @@
            <div class="xl:m-16 lg:m-8 m-1 flex flex-wrap items-center justify-center gap-5 card">
 
 
-               <div class="changeTabButtons w-100 flex justify-start" style="width: 800px;">
+               <div class="changeTabButtons w-100 flex justify-start" style="width: 800px; ">
                    <button class="w-100 text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-2 mr-2 mb-2 focus:outline-none dark:focus:ring-blue-800">Fiszki</button>
                </div>
                <div class="w-full flex flex-wrap justify-center ">
-                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px;" class="fadeInTranslate girelative shadow-lg rounded-xl h-96 flip-card" v-for="card in cards.data" :key="card.id">
+                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px; " class="fadeInTranslate girelative shadow-lg rounded-xl h-64 flip-card" v-for="card in cards.data" :key="card.id">
                        <div class="flip-card-front">
 
                            <span class="card-title">
@@ -43,7 +43,7 @@
                    </div>
 
                </div>
-               <div class=" flex gap-12" style="width: 800px;">
+               <div class=" flex gap-12" style="width: 800px; margin-bottom: 60px !important;">
                    <button @click="changeStep('prev')" :class="{'disable': store.showSingleCard <= 1 }" class="w-1/2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                        &lt;
                    </button>
@@ -115,7 +115,7 @@ export default {
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
-    gap: 80px;
+    gap: 40px;
     justify-content: center;
     position: absolute;
     width: 100%;

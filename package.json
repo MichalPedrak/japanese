@@ -5,6 +5,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@nuxtjs/device": "^3.1.1",
         "@vitejs/plugin-vue": "^4.1.0",
         "@vue/compiler-sfc": "^3.2.47",
         "autoprefixer": "^10.4.14",

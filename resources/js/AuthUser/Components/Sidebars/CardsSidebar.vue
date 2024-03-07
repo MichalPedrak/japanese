@@ -1,6 +1,6 @@
 <template>
-    <div class="cards-right-sidebar-wrapper">
-        <div class="cards-right-sidebar">
+    <div class="cards-right-sidebar-wrapper cards-right-sidebar-wrapper-hide">
+        <div class="cards-right-sidebar cards-right-sidebar-hide">
             <div class="cards-right-sidebar-close" @click="closeSidebar" v-show="!isClosedSidebar">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" height="24" width="24" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -40,7 +40,31 @@ export default {
     },
     setup(props){
         const store = useCardStore();
-        let isClosedSidebar = ref(false);
+
+        let isClosedSidebar = ref(true);
+        // if(window.innerWidth < 1024){
+        //     let sidebar = document.querySelector('.cards-right-sidebar');
+        //     let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
+        //     sidebar.classList.add('cards-right-sidebar-hide');
+        //     sidebarWrapper.classList.add('cards-right-sidebar-wrapper-hide');
+        //     isClosedSidebar.value = true;
+        // }
+
+        let hideSidebarOnMobile = function(){
+            if(window.innerWidth < 1024 ){
+                let sidebar = document.querySelector('.cards-right-sidebar');
+                let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
+                sidebar.classList.add('cards-right-sidebar-hide');
+                sidebarWrapper.classList.add('cards-right-sidebar-wrapper-hide');
+                isClosedSidebar.value = true;
+            }
+        }
+        window.addEventListener("resize", (event) => {
+            hideSidebarOnMobile()
+        });
+        window.addEventListener("load", (event) => {
+            hideSidebarOnMobile()
+        });
 
         let closeSidebar = function (closeByChange = null){
 
@@ -105,7 +129,7 @@ export default {
             inset: unset;
             bottom: 0px !important;
             left: 0px !important;
-            height: 60px !important;
+            height: 50px !important;
             background: white;
             display: flex;
             justify-content: space-between;
@@ -179,7 +203,7 @@ export default {
             height: 100%;
             transition: unset;
             border-radius: 0px;
-
+            margin-top: 0px;
         }
 
         .cards-right-container{

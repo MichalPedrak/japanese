@@ -1,7 +1,7 @@
 <template>
-      <div class="user-info lg:my-10 flex flex-row-reverse gap-5 p-6 lg:flex-row flex-wrap items-center justify-center">
+      <div class="user-info lg:my-10 flex flex-row-reverse gap-5 px-6 py-2 lg:flex-row flex-wrap items-center justify-center">
             <img height="150" width="150" style="border-radius: 50%"
-                 src="https://i.pinimg.com/564x/8e/db/9b/8edb9b0c4cbcfb0573951a6122d8fc22.jpg">
+                 src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png">
 
             <div class="user-name flex flex-wrap lg:mt-5  items-center justify-center">
                 <span>Witaj</span>

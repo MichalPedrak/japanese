@@ -60,16 +60,16 @@ export default {
 
         let showMenu = ref(false);
         const menu = [
-            {
-                title: 'Kokpit',
-                link: '/',
-                currentRoute: ['Dashboard'],
-                icon: `
-                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                    </svg>
-                `,
-            },
+            // {
+            //     title: 'Kokpit',
+            //     link: '/',
+            //     currentRoute: ['Dashboard'],
+            //     icon: `
+            //         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            //             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            //         </svg>
+            //     `,
+            // },
             {
                 title: 'Fiszki',
                 link: '/fiszki',
@@ -80,16 +80,16 @@ export default {
                     </svg>
                 `,
             },
-            {
-                title: 'Panel admina',
-                link: '/admin',
-                currentRoute: [],
-                icon: `
-                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                    </svg>
-                `,
-            },
+            // {
+            //     title: 'Panel admina',
+            //     link: '/admin',
+            //     currentRoute: [],
+            //     icon: `
+            //         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            //             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            //         </svg>
+            //     `,
+            // },
 
         ];
         let store = useAuthStore();
@@ -130,7 +130,7 @@ aside {
 main {
     overflow: hidden;
     width:100%;
-    border-top-left-radius: 1em;
+    border-radius: 1em;
     background: #f6f6f6;
     padding: 10px 15px;
 }
@@ -154,14 +154,14 @@ main {
 @media all and (max-width: 1024px){
     main{
         border-top-right-radius: 1em;
-        padding: 10px;
+        padding: 5px;
     }
     .layout{
         flex-wrap: wrap;
     }
     aside{
         width: 100%;
-        height: 100px;
+        height: 80px;
         display: flex;
         justify-content: space-between;
     }
@@ -171,7 +171,7 @@ main {
         position: absolute;
         z-index: 10000;
         height: 100vh;
-        width: 500px;
+        width: 350px;
         padding-top: 100px;
         background: white;
         margin-left: -520px;
@@ -192,15 +192,16 @@ main {
     }
 
     .box-wrapper{
-        max-height: calc(100vh - 180px);
+        padding: 20px 20px 0px 20px;
+        max-height: calc(100vh - 140px);
     }
     .box{
-        height: calc(100vh - 120px) !important;
+        height: calc(100vh - 160px) !important;
     }
 }
 
 
-@media all and (max-width: 500px){
+@media all and (max-width: 300px){
     .menu{
         width: 100%;
     }
