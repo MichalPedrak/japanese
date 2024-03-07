@@ -12,7 +12,9 @@
 :root{
     --primary-color: #ee3c20;
 }
-
+body, html{
+    background: white !important;
+}
 
 /* width */
 ::-webkit-scrollbar {

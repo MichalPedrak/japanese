@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-a47cc854.css",
+    "file": "assets/app-443a5d0c.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -13,7 +13,7 @@
     "src": "resources/images/notifications/warning.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-394b0419.css",
+    "file": "assets/app-003e0f48.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -22,9 +22,9 @@
       "assets/baner-abdc7b10.svg"
     ],
     "css": [
-      "assets/app-394b0419.css"
+      "assets/app-003e0f48.css"
     ],
-    "file": "assets/app-10589520.js",
+    "file": "assets/app-c932263d.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
