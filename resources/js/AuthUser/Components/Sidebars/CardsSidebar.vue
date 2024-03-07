@@ -245,7 +245,9 @@ export default {
     .cards-right-item__active{
         background: #f6f6f6;
     }
-
+    .cards-right-item{
+        cursor: pointer;
+    }
     .cards-right-item.active{
         background: #f5f5f5;
     }

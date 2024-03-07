@@ -104,7 +104,24 @@ export const useCardStore = defineStore('cardStore', {
         //
         //         });
         // },
+        async importCards(data){
+            axios.post('/admin/cards/import', data, {
+                headers: {
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-type': 'application/json',
 
+                }
+            })
+                .then(function (response) {
+
+                    console.log(response)
+
+                })
+                .catch(function (errorResponse) {
+                    // todo How improve displaying errors?
+                    console.log(errorResponse)
+                });
+        },
         async getGroups(){
 
             let setGroups =  this.setGroups

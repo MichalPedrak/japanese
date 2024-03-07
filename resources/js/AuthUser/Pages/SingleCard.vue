@@ -22,19 +22,20 @@
                <div class="w-full flex flex-wrap justify-center ">
                    <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px;" class="fadeInTranslate girelative shadow-lg rounded-xl h-96 flip-card" v-for="card in cards.data" :key="card.id">
                        <div class="flip-card-front">
-                        <span class="card-title">
+
+                           <span class="card-title">
+                            {{ card.definition }}
+                        </span>
+                           <span class="card-example">
+                            <div v-html="card.definition_example"></div>
+                        </span>
+                       </div>
+                       <div class="flip-card-back">
+                         <span class="card-title">
                             {{ card.content }}
                         </span>
                            <span class="card-example">
                             {{ card.content_example }}
-                        </span>
-                       </div>
-                       <div class="flip-card-back">
-                        <span class="card-title">
-                            {{ card.definition }}
-                        </span>
-                           <span class="card-example">
-                            {{ card.definition_example }}
                         </span>
                        </div>
 
@@ -125,13 +126,18 @@ export default {
 }
 
 .card-title{
-    font-size: 36px;
+    font-size: 80px;
     width: 100%;
     text-align: center;
 }
-
+.card-example{
+    font-size: 32px;
+}
 .flip-card-back{
     transform: rotateY(180deg);
+}
+.cards-right-item{
+    cursor: pointer;
 }
 
 .flip-card-rotate {
@@ -143,7 +149,7 @@ export default {
 }
 
 .fadeInTranslate{
-    animation: 0.5s rotate;
+    animation: 0.2s rotate;
 }
 @keyframes rotate {
     0%{

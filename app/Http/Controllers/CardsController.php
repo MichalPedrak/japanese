@@ -127,10 +127,24 @@ class CardsController extends Controller
 
     }
 
-    public function importCards(Request $request, $groupId, $cardsJson){
+    public function importCards(Request $request){
+
+        $cards = json_decode($request['import'], true);
+
+        foreach(array_reverse($cards) as $card){
+            //
+        Cards::create([
+            'group_id' => $request['group_id'],
+            'content' => $card[2],
+            'content_example' => $card[3],
+            'definition' => $card[0],
+            'definition_example' => $card[1],
+        ]);
+        }
 
 
-        var_dump($groupId, $cardsJson);
+
+        var_dump($json);
         exit();
     }
 }

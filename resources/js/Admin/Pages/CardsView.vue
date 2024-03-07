@@ -10,7 +10,7 @@ import CardStep from "@/Admin//Components/CardStep.vue";
 import Cards from "@/Admin/Components/Cards/Cards.vue";
 import CreateCard from "@/Admin/Components/Cards/CreateCard.vue";
 import CardHeading from "@/Admin/Components/Cards/CardHeading.vue";
-
+import ImportModal from "@/Admin/Components/Import/ImportModal.vue";
 import Group from "@/Admin/Components/Groups/Group.vue";
 import CreateGroup from "@/Admin/Components/Groups/CreateGroup.vue";
 import GroupHeading from "@/Admin/Components/Groups/GroupHeading.vue";
@@ -24,7 +24,7 @@ export default {
     name: "CardsView.vue",
     components: {
         CardHeading,
-        GroupHeading, Modal, CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable},
+        GroupHeading, Modal, CreateGroup, CreateCard, CardStep, CreateButtons, Cards, Group, draggable, ImportModal},
     // from interia render
     data() {
         return {
@@ -236,8 +236,8 @@ export default {
     <Modal v-if="store.showModal == 'create-group' || store.showModal == 'edit-group' " >
         <CreateGroup></CreateGroup>
     </Modal>
-    <Modal v-if="store.showModal == 'importCards' " >
-        <CreateGroup></CreateGroup>
+    <Modal v-if="store.showModal == 'import-cards' " >
+        <ImportModal></ImportModal>
     </Modal>
 
 

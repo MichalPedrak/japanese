@@ -57,6 +57,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::put('/admin/cards/single/move/{id?}', [\App\Http\Controllers\CardsController::class, 'move']);
         Route::post('/admin/cards/store/', [\App\Http\Controllers\CardsController::class, 'store']);
         Route::post('/admin/cards/update/{id}', [\App\Http\Controllers\CardsController::class, 'update']);
+        Route::post('/admin/cards/import', [\App\Http\Controllers\CardsController::class, 'importCards']);
         Route::delete('/admin/cards/destroy/{id}', [\App\Http\Controllers\CardsController::class, 'destroy']);
 
 
