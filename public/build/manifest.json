@@ -13,7 +13,7 @@
     "src": "resources/images/notifications/warning.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-003e0f48.css",
+    "file": "assets/app-311f6844.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -22,9 +22,9 @@
       "assets/baner-abdc7b10.svg"
     ],
     "css": [
-      "assets/app-003e0f48.css"
+      "assets/app-311f6844.css"
     ],
-    "file": "assets/app-c932263d.js",
+    "file": "assets/app-a6889b9f.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

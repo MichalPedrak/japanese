@@ -81,13 +81,7 @@ export default {
             }
         }
         let isClosedSidebar = ref(true);
-        // if(window.innerWidth < 1024){
-        //     let sidebar = document.querySelector('.cards-right-sidebar');
-        //     let sidebarWrapper = document.querySelector('.cards-right-sidebar-wrapper');
-        //     sidebar.classList.add('cards-right-sidebar-hide');
-        //     sidebarWrapper.classList.add('cards-right-sidebar-wrapper-hide');
-        //     isClosedSidebar.value = true;
-        // }
+
 
         let hideSidebarOnMobile = function(){
             if(window.innerWidth < 1024 ){

@@ -24,9 +24,10 @@
 
                     </div>
                  </div>
-                <div class="flex">
-                   <a :href="'/fiszki/' + group.id" class="btn btn-primary">Przeglądaj fiszki</a>
-                </div>
+                <Link class="flex-1 ml-3 whitespace-nowrap" :href="'/fiszki/' + group.id">Przeglądaj fiszki</Link>
+<!--                <div class="flex">-->
+<!--                   <a :href="'/fiszki/' + group.id" class="btn btn-primary">Przeglądaj fiszki</a>-->
+<!--                </div>-->
 
             </div>
         </li>
@@ -44,10 +45,10 @@
 import {useCardStore} from "@/store/CardsStore";
 import {ref} from "vue";
 import CardsStatus from "@/AuthUser/Pages/CardsStatus.vue";
-
+import {Link} from "@inertiajs/vue3";
 export default {
     name: "Cards",
-    components: {CardsStatus},
+    components: {CardsStatus, Link},
     display: "Fiszki",
 
     setup(){
