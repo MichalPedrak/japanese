@@ -18,7 +18,7 @@ class GroupsController extends Controller
 
     public function getGroups(){
 
-        return Groups::query()->orderByDesc('id')->get();
+        return Groups::query()->orderBy('id')->get();
 
     }
 

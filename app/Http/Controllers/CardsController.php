@@ -132,7 +132,7 @@ class CardsController extends Controller
         $cards = json_decode($request['import'], true);
 
         foreach(array_reverse($cards) as $card){
-            //
+
         Cards::create([
             'group_id' => $request['group_id'],
             'content' => $card[2],

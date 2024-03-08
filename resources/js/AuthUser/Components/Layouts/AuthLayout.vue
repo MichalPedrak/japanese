@@ -43,7 +43,12 @@
 
         </main>
     </div>
+    <footer>
+        <div @click="fullscreen" class="go-full-screen absolute bottom-0 right-0" style="z-index: 100000000;">
+            <svg fill="#36332c" enable-background="new 0 0 40 40" height="40" viewBox="0 0 124 124" width="40" xmlns="http://www.w3.org/2000/svg"><g id="Layer_19"><g><path d="m40 17h-20c-1.6567059 0-3 1.3432999-3 3v20c0 1.6567001 1.3432941 3 3 3 1.6566944 0 3-1.3432999 3-3v-17h17c1.6566925 0 3-1.3432999 3-3s-1.3433075-3-3-3z"/><path d="m80 17h-20c-1.6567078 0-3 1.3432999-3 3s1.3432922 3 3 3h17v17c0 1.6567001 1.3432922 3 3 3 1.6566925 0 3-1.3432999 3-3v-20c0-1.6567001-1.3433075-3-3-3z"/><path d="m40 77h-17v-17c0-1.6567001-1.3433056-3-3-3-1.6567059 0-3 1.3432999-3 3v20c0 1.6567001 1.3432941 3 3 3h20c1.6566925 0 3-1.3432999 3-3s-1.3433075-3-3-3z"/><path d="m79.9784927 56.7020988c-.0009995 0-.0018997 0-.0034027 0-1.6567001.0020027-2.998497 1.3462029-2.9965973 3.0035019l.018097 17.2943993h-16.9965897c-1.6567078 0-3 1.3432999-3 3s1.3432922 3 3 3h20c.7963943 0 1.5595932-.3163986 2.1225891-.8798981.5625-.5630035.8784103-1.3271027.8774109-2.1235046l-.0215073-20.2978973c-.0018997-1.6557007-1.3442001-2.9966012-3-2.9966012z"/></g></g></svg>
+        </div>
 
+    </footer>
 
 </template>
 
@@ -59,7 +64,35 @@ export default {
     components: {UserProfile, AsideLink},
     setup(){
 
+        function fullscreen() {
+            var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+                (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+                (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+                (document.msFullscreenElement && document.msFullscreenElement !== null);
 
+            var docElm = document.documentElement;
+            if (!isInFullScreen) {
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                } else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                } else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                } else if (docElm.msRequestFullscreen) {
+                    docElm.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
 
         let showMenu = ref(false);
         const menu = [
@@ -107,6 +140,7 @@ export default {
             logout,
             showMenu,
             menu,
+            fullscreen
         }
 
 
@@ -191,7 +225,7 @@ main {
     }
 
     .box-wrapper{
-        padding: 20px 20px 0px 20px;
+        padding: 10px 10px 0px 10px;
         max-height: calc(100vh - 140px);
     }
     .box{

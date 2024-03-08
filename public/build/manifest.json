@@ -1,30 +1,25 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-721c5cf6.css",
+    "file": "assets/app-1e831803.css",
     "isEntry": true,
     "src": "resources/css/app.css"
-  },
-  "resources/images/baner.svg": {
-    "file": "assets/baner-abdc7b10.svg",
-    "src": "resources/images/baner.svg"
   },
   "resources/images/notifications/warning.svg": {
     "file": "assets/warning-180ddd33.svg",
     "src": "resources/images/notifications/warning.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-b8842bdf.css",
+    "file": "assets/app-4fde1717.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "assets": [
-      "assets/warning-180ddd33.svg",
-      "assets/baner-abdc7b10.svg"
+      "assets/warning-180ddd33.svg"
     ],
     "css": [
-      "assets/app-b8842bdf.css"
+      "assets/app-4fde1717.css"
     ],
-    "file": "assets/app-ddf99409.js",
+    "file": "assets/app-7215cd8c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

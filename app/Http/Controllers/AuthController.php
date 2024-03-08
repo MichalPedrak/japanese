@@ -15,7 +15,8 @@ class AuthController extends Controller
     public function store(Request $request){
 
         $messages = [
-            'name.required' => 'Imię i nazwisko jest wymagane',
+            'name.required' => 'Nazwa użytkownika jest wymagane',
+            'name.unique' => 'Podana nazwa użytkownika jest już zajęta',
             'email.email' => 'Wprowadź prawidłowy adres email',
             'email.unique' => 'Podany adres email jest już zajęty',
             'password.regex' => 'Hasło musi zawierać jedną dużą literę, liczbę oraz znak specialny',
@@ -23,7 +24,7 @@ class AuthController extends Controller
         ];
 
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:users,name|max:255',
             'email' => 'required|unique:users,email|email',
             'password' => [
                 'required',

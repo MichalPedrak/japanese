@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
-        <InputForm :error="store.error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Jan Kowalski"></InputForm>
+        <InputForm :error="store.error.name" :modelValue="form.name" @update:modelValue="newValue => form.name = newValue" name="name" id="name" input="text" placeholder="Użytkownik123">Nazwa użytkownika</InputForm>
         <InputForm :error="store.error.email" :modelValue="form.email" @update:modelValue="newValue => form.email = newValue"  name="email" id="email" input="email" placeholder="kowalski@email.com">Adres E-mail</InputForm>
         <InputForm :error="store.error.password" :modelValue="form.password" @update:modelValue="newValue => form.password = newValue" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
 

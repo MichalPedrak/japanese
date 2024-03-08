@@ -5,13 +5,21 @@
 
             <div class="user-name flex flex-wrap lg:mt-5  items-center justify-center">
                 <span>Witaj</span>
-                <span>Hayato Angor</span>
+                <span>{{ name }}</span>
             </div>
         </div>
 </template>
 <script>
 export default {
-  name: 'UserProfile'
+  name: 'UserProfile',
+    setup(){
+
+      let name = JSON.parse(localStorage.getItem("user")).name;
+
+      return{
+          name,
+      }
+    },
 }
 </script>
 <style scoped>

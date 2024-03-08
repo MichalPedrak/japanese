@@ -34,6 +34,7 @@ export const useAuthStore = defineStore('authStore', {
                 .then(function (response) {
                     console.log(response)
                     router.visit('/login')
+                    updateError({register: ''})
                 })
                 .catch(function (errorResponse) {
                     // todo How improve displaying errors?

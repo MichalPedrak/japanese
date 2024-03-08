@@ -10,7 +10,10 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');*/
 
 :root{
-    --primary-color: #ee3c20;
+    --primary-color: #AF8CFC;
+    /*--primary-color: #ee3c20;*/
+    --secondary-color: #F4E3FC;
+    --border-radius: 12px;
 }
 body, html{
     background: white !important;
@@ -39,6 +42,23 @@ selector:-webkit-full-screen{
     border-radius: 2px;
 }
 
+selector:-webkit-full-screen{
+    display: block;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: white;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #b5b3b3;
+    border-radius: 2px;
+}
+
 
 h1,h2,h3,h4,h5,h6, p, a, span, div{
     font-family: 'Montserrat', sans-serif;
@@ -46,7 +66,8 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
     /*font-family: 'Libre Franklin', sans-serif;*/
 }
 *{
-    color: #36332c;
+    /*color: #36332c;*/
+    color: #000000;
 }
 .gradient{
     /*background: #fef3fe;*/
@@ -72,23 +93,25 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
 .bg-primary{
     background: var(--primary-color) !important;
 }
-.route-active{
+.route-active {
     transition: background 0.5s ease-in;
     color: white !important;
-    background: #ee3c20 !important;
+    background: var(--primary-color) !important;
 }
-
 .route-active svg{
     color: white !important;
     fill: white;
 }
 
-.bg-red-main{
-    background: #ee3c20 !important
+.bg-main{
+    background: var(--primary-color) !important
+}
+.bg-secondary{
+    background: var(--secondary-color) !important
 }
 
-.bg-red-main-hover{
-    background: #c2331c !important;
+.bg-main-hover{
+    background: #F4E3FF !important;
 }
 
 .fadeIn{
@@ -103,9 +126,14 @@ h1,h2,h3,h4,h5,h6, p, a, span, div{
 }
 
 .card-shadow{
-    box-shadow: rgba(66, 68, 90, 0.17) 5px 5px 30px -10px;
+    /*box-shadow: rgba(66, 68, 90, 0.17) 5px 5px 30px -10px;*/
+    box-shadow: rgba(66, 68, 90, 0.37) 5px 5px 30px -10px
 }
 
+.border-radius-main{
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+}
 
 
 .submit{
