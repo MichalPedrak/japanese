@@ -51,6 +51,7 @@ export const useAuthStore = defineStore('authStore', {
                     }
                 })
                 .then(function (response) {
+                    updateError({login: ''})
 
                     updateUser(response.data.user);
 
@@ -69,14 +70,14 @@ export const useAuthStore = defineStore('authStore', {
         },
 
         async logout(){
+
             let updateUser =  this.setUser
 
             axios.post('/logout',[], {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
-            })
-                .then(function (response) {
+            }).then(function (response) {
                     localStorage.removeItem("user");
                     updateUser({})
 

@@ -35,15 +35,13 @@ Route::get('/fiszki', function () {
 
 Route::get('/fiszki/{id}', [\App\Http\Controllers\CardsController::class, 'cards']);
 
-
+Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('/', function () {
         return Inertia('Dashboard');
     });
+    Route::get('/admin/groups/show', [\App\Http\Controllers\GroupsController::class, 'getGroups']);
 
-
-
-    Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
 
     Route::middleware('admin')->group(function () {
@@ -64,7 +62,6 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::post('/admin/groups/store', [\App\Http\Controllers\GroupsController::class, 'store']);
         Route::post('/admin/groups/update/{id}', [\App\Http\Controllers\GroupsController::class, 'update']);
         Route::get('/admin/groups', [\App\Http\Controllers\GroupsController::class, 'index']);
-        Route::get('/admin/groups/show', [\App\Http\Controllers\GroupsController::class, 'getGroups']);
         Route::delete('/admin/groups/destroy/{id}', [\App\Http\Controllers\GroupsController::class, 'destroy']);
 
 

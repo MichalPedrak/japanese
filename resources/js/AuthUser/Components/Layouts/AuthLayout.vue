@@ -53,6 +53,7 @@ import {ref} from "vue";
 import UserProfile from "@/AuthUser/Components/Layouts/UserProfile.vue";
 import {useAuthStore} from "@/store";
 import {router} from "@inertiajs/vue3";
+import axios from "axios";
 export default {
     name: "AuthLayout",
     components: {UserProfile, AsideLink},
@@ -96,13 +97,9 @@ export default {
         ];
         let store = useAuthStore();
         const logout = async () => {
-            await fetch('/api/logout', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
-            })
+
             await store.logout()
-            await router.push('/');
+
         };
 
 

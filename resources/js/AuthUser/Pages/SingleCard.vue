@@ -104,7 +104,7 @@ export default {
     pointer-events: none;
 }
 .flip-card{
-    transition: transform 0.6s;
+    transition: transform 0.2s;
     transform-style: preserve-3d;
 
 }

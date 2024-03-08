@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit" class="space-y-4 md:space-y-6" action="#">
-        <InputForm v-model="form.email" name="email" id="email" input="email" placeholder="kowalski@email.com">Email</InputForm>
+        <InputForm v-model="form.email" name="email" id="email" input="text" placeholder="kowalski@email.com">Email lub nazwa użytkownika</InputForm>
         <InputForm v-model="form.password" name="password" id="password" input="password" placeholder="••••••••">Hasło</InputForm>
         <div class="warning" :class="[store.error.login === '' || store.error.email || store.error.password ? 'hide-notification' : 'show-notification' ]" ><img src="../../../../resources/images/notifications/warning.svg" />{{ store.error.login }}&nbsp;</div>
 

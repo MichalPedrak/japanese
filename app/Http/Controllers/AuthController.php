@@ -45,11 +45,22 @@ class AuthController extends Controller
 
     public function login(Request $request){
 
-        if(!Auth::attempt($request->only('email', 'password'))){
+        $login = $request->input('email');
+        $user = User::where('email', $login)->orWhere('name', $login)->first();
+
+        if (!$user) {
             return response([
                 'errors' => 'Nieprawidłowe dane ',
             ], Response::HTTP_UNAUTHORIZED);
-        };
+        }
+
+        if (Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
+            Auth::attempt(['name' => $user->email, 'password' => $request->password])) {
+            Auth::loginUsingId($user->id);
+
+        } else {
+            return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+        }
 
 
         return \response([
