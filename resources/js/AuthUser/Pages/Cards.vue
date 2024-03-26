@@ -6,7 +6,7 @@
             Japoński
         </h1>
     </div>
-    <div class="my-5 overflow-hidden cards-categories-wrapper">
+    <div class="m-5 overflow-hidden cards-categories-wrapper">
         <ul class="flex gap-2 cards-categories">
             <li class="border-black border border-radius-main selected">Polecane</li>
             <li class="border-black border border-radius-main"><svg data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -23,8 +23,8 @@
                 Premium</li>
         </ul>
     </div>
-    <ul class="flex flex-wrap gap-4 groups w-full lg:m-5 " >
-        <li class="w-1/2 flex" v-for="(group, index) in store.groups" :key="group.id">
+    <ul class="flex flex-wrap groups w-full lg:m-5 " >
+        <li class="group flex" v-for="(group, index) in store.groups" :key="group.id">
             <div class="w-full px-3 py-3 border border-black rounded-xl flex gap-x-5 gap-y-2 flex-nowrap  justify-between">
             <div class="flex align-center">
                 <img style="object-fit: contain" :src="images[index]">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <Link class=" w-full flex justify-end whitespace-nowrap" :href="'/fiszki/' + group.id">
-                    <button class="w-32 bg-main w-100 text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-2 focus:outline-none dark:focus:ring-blue-800">
+                    <button class="w-32 bg-main w-100 text-white  font-medium rounded-lg text-sm px-6 py-2 focus:outline-none dark:focus:ring-blue-800">
                         Więcej
                         <!--                   <a :href="'/fiszki/' + group.id" class="btn btn-primary">Przeglądaj fiszki</a>-->
                     </button>
@@ -130,6 +130,11 @@ export default {
 }
 .groups{
     width: 100%;
+    gap: 2%;
+}
+.group{
+    width: 49%;
+    margin-bottom: 20px;
 }
  img {
     max-width: 80px;

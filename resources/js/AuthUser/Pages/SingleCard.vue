@@ -17,10 +17,10 @@
 
 
                <div class="changeTabButtons w-100 flex justify-start" style="width: 800px; ">
-                   <button class="w-100 text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-2 mr-2 mb-2 focus:outline-none dark:focus:ring-blue-800">Fiszki</button>
+                   <button class="w-100 text-white font-medium rounded-lg text-sm px-6 py-2 mr-2 mb-2 focus:outline-none">Fiszki</button>
                </div>
-               <div class="w-full flex flex-wrap justify-center ">
-                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px; " class="fadeInTranslate girelative card-shadow rounded-xl h-64 flip-card" v-for="card in cards.data" :key="card.id">
+               <div class="flip-card-wrapper w-full flex flex-wrap justify-center overflow-y">
+                   <div v-show="store.showSingleCard === card.order" :class="{'flip-card-rotate': rotate === true }" @click="rotate = !rotate" style="width: 800px; " class="fadeInTranslate girelative border border-black border-radius-main rounded-xl h-64 flip-card" v-for="card in cards.data" :key="card.id">
                        <div class="flip-card-front">
 
                            <span class="card-title">
@@ -28,6 +28,7 @@
                         </span>
                            <span class="card-example">
                             <div v-html="card.definition_example"></div>
+                            <div v-html="card.additional_content"></div>
                         </span>
                        </div>
                        <div class="flip-card-back">
@@ -44,11 +45,11 @@
 
                </div>
                <div class=" flex gap-12" style="width: 800px; margin-bottom: 60px !important;">
-                   <button @click="changeStep('prev')" :class="{'disable': store.showSingleCard <= 1 }" class="w-1/2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                   <button @click="changeStep('prev')" :class="{'disable': store.showSingleCard <= 1 }" class="w-1/2 text-gray-900 bg-white border border-black focus:outline-none hover:bg-gray-100   font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                        &lt;
                    </button>
 
-                   <button @click="changeStep('next')" :class="{'disable': store.showSingleCard  >= cards.data.length }" class="w-1/2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                   <button @click="changeStep('next')" :class="{'disable': store.showSingleCard  >= cards.data.length }" class="w-1/2 text-gray-900 bg-white border border-black focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                        >
                    </button>
 
@@ -84,6 +85,8 @@ export default {
         }
         let cards = props.cards;
 
+        console.log(cards)
+
         return{
             changeStep,
             store,
@@ -108,6 +111,14 @@ export default {
     transform-style: preserve-3d;
 
 }
+.flip-card-wrapper{
+    z-index: 12212121;
+}
+.flip-card-wrapper::-webkit-scrollbar{
+    height: 0px;
+
+}
+
 
 
 .flip-card-front, .flip-card-back {
@@ -145,7 +156,7 @@ export default {
 }
 
 .card .changeTabButtons button{
-    background: #ee3c20;
+    background: var(--primary-color)
 }
 
 .fadeInTranslate{

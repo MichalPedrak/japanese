@@ -21,6 +21,7 @@ class CardsResource extends JsonResource
             'content_example' => $this->content_example,
             'definition' => $this->definition,
             'definition_example' => $this->definition_example,
+            'additional_content' => $this->additional_content,
             'order' => static::$order++,
         ];
     }

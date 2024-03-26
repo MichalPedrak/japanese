@@ -14,7 +14,10 @@ export default {
   name: 'UserProfile',
     setup(){
 
-      let name = JSON.parse(localStorage.getItem("user")).name;
+      let name
+      if(localStorage.getItem('user')){
+          name = JSON.parse(localStorage.getItem("user")).name;
+      }
 
       return{
           name,

@@ -169,7 +169,7 @@ main {
 }
 
 .box-wrapper{
-    overflow-y: scroll !important;
+    overflow-y: auto !important;
     max-height: calc(100vh - 20px);
     border-radius: 1em;
     background: white;
@@ -183,7 +183,11 @@ main {
     display: none;
 
 }
-
+@media all and (min-width: 1300px){
+    .go-full-screen{
+        display: none;
+    }
+}
 @media all and (max-width: 1024px){
     main{
         border-top-right-radius: 1em;

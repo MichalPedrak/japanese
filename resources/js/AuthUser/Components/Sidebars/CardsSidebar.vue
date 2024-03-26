@@ -122,7 +122,7 @@ export default {
         right: 10px;
     }
     .go-full-screen{
-        display: none;
+        display: none !important;
     }
     @media all and (max-width: 1300px){
         .cards-right-sidebar-wrapper {

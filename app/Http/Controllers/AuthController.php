@@ -60,7 +60,9 @@ class AuthController extends Controller
             Auth::loginUsingId($user->id);
 
         } else {
-            return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+            return response([
+                'errors' => 'Nieprawidłowe dane ',
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
 
